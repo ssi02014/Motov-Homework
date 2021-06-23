@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
+import MapComponent from "./MapComponent";
 
 const FormContainer = styled.form`
   position: fixed;
@@ -16,10 +17,24 @@ const FormContainer = styled.form`
 
 const FormTitle = styled.h1`
   margin-top: 0;
+  margin-bottom: 16px;
+`;
+
+const FormRegionTitle = styled.h3`
+  margin: 30px 0 10px 0;
 `;
 
 const FormButton = styled.button`
-  margin-right: 10px;
+  margin-right: 20px;
+  height: 30px;
+  outline: none;
+  border: 1px solid #999;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #dadada;
+  }
 `;
 
 const SelectBoxContainer = styled.select`
@@ -31,9 +46,36 @@ const SelectBoxContainer = styled.select`
   font-size: 1.1rem;
 `;
 
-const CheckboxContainer = styled.div`
-  margin: 30px 0;
+const CheckBoxContainer = styled.div`
+  margin: 20px 0 15px 0;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 `;
+
+const CheckBoxLabel = styled.label`
+  /* display: inline-block; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 33%;
+  height: 40px;
+  border: 1px solid #999;
+
+  &:nth-child(3n - 2),
+  &:nth-child(3n - 1) {
+    border-right: none;
+    border-bottom: none;
+  }
+  &:nth-child(3n) {
+    border-bottom: none;
+  }
+  &:last-child {
+    border-right: 1px solid #999;
+  }
+`;
+
+const CheckBoxInput = styled.input``;
 
 const SelectRegionContainer = styled.div``;
 
@@ -99,28 +141,81 @@ const ModalComponent = ({ modal, setModal }) => {
           </SelectBoxContainer>
           <FormButton onClick={allCheckHandle}>전체 선택</FormButton>
           <FormButton onClick={allUnCheckHandle}>선택 해제</FormButton>
-          <CheckboxContainer ref={checkBoxRef} onChange={checkHandle}>
-            <label>
-              <input key="1" type="checkbox" name="region" value="강남구" />
+          <FormRegionTitle>서울 특별시</FormRegionTitle>
+          <CheckBoxContainer ref={checkBoxRef} onChange={checkHandle}>
+            <CheckBoxLabel>
+              <CheckBoxInput
+                type="checkbox"
+                name="region"
+                value="강남구"
+                id="region"
+              />
               강남구
-            </label>
-            <label>
-              <input key="2" type="checkbox" name="region" value="강동구" />
+            </CheckBoxLabel>
+            <CheckBoxLabel>
+              <CheckBoxInput
+                type="checkbox"
+                name="region"
+                value="강동구"
+                id="region"
+              />
               강동구
-            </label>
-            <label>
-              <input key="3" type="checkbox" name="region" value="성북구" />
+            </CheckBoxLabel>
+            <CheckBoxLabel>
+              <CheckBoxInput
+                type="checkbox"
+                name="region"
+                value="성북구"
+                id="region"
+              />
               성북구
-            </label>
-            <label>
-              <input key="4" type="checkbox" name="region" value="강북구" />
+            </CheckBoxLabel>
+            <CheckBoxLabel>
+              <CheckBoxInput
+                type="checkbox"
+                name="region"
+                value="강북구"
+                id="region"
+              />
               강북구
-            </label>
-            <label>
-              <input key="5" type="checkbox" name="region" value="서대문구" />
+            </CheckBoxLabel>
+            <CheckBoxLabel>
+              <CheckBoxInput
+                type="checkbox"
+                name="region"
+                value="서대문구"
+                id="region"
+              />
               서대문구
-            </label>
-          </CheckboxContainer>
+            </CheckBoxLabel>
+            <CheckBoxLabel>
+              <CheckBoxInput
+                type="checkbox"
+                name="region"
+                value="도봉구"
+                id="region"
+              />
+              도봉구
+            </CheckBoxLabel>
+            <CheckBoxLabel>
+              <CheckBoxInput
+                type="checkbox"
+                name="region"
+                value="구로구"
+                id="region"
+              />
+              구로구
+            </CheckBoxLabel>
+            <CheckBoxLabel>
+              <CheckBoxInput
+                type="checkbox"
+                name="region"
+                value="강서구"
+                id="region"
+              />
+              강서구
+            </CheckBoxLabel>
+          </CheckBoxContainer>
           <SelectRegionContainer>
             {selectRegions.map((region, i) => {
               return <span key={i}>{region}</span>;
@@ -131,6 +226,7 @@ const ModalComponent = ({ modal, setModal }) => {
       ) : (
         <></>
       )}
+      <MapComponent />
     </>
   );
 };
