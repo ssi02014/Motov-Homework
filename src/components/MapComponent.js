@@ -3,12 +3,12 @@ import styled from "styled-components";
 
 const { kakao } = window;
 
-const MapComponent = () => {
-  const MapStyle = styled.div`
-    width: 100%;
-    height: 100vh;
-  `;
+const MapStyle = styled.div`
+  width: 100%;
+  height: 100%;
+`;
 
+const MapComponent = () => {
   useEffect(() => {
     const container = document.getElementById("myMap");
     const options = {
