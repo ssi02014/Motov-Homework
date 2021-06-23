@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const FormContainer = styled.form`
+const ModalFormContainer = styled.form`
   position: fixed;
   top: 50%;
   left: 50%;
@@ -59,19 +59,7 @@ const CheckBoxLabel = styled.label`
   align-items: center;
   width: 33%;
   height: 40px;
-  border: 1px solid #999;
-
-  &:nth-child(3n - 2),
-  &:nth-child(3n - 1) {
-    border-right: none;
-    border-bottom: none;
-  }
-  &:nth-child(3n) {
-    border-bottom: none;
-  }
-  &:last-child {
-    border-right: 1px solid #999;
-  }
+  border-top: 1px solid #999;
 `;
 
 const CheckBoxInput = styled.input``;
@@ -88,7 +76,7 @@ const ModalComponent = ({
 }) => {
   return (
     <>
-      <FormContainer>
+      <ModalFormContainer>
         <FormTitle>지역 설정</FormTitle>
         <SelectBoxContainer>
           <option value="서울특별시">서울특별시</option>
@@ -190,7 +178,7 @@ const ModalComponent = ({
           })}
         </SelectRegionContainer>
         <FormButton onClick={completeRegionSelect}>지역 설정 완료</FormButton>
-      </FormContainer>
+      </ModalFormContainer>
     </>
   );
 };
