@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import ModalContainer from "../containers/ModalContainer";
 import MapComponent from "./MapComponent";
 import ModalComponent from "./ModalComponent";
 
@@ -50,7 +51,7 @@ const SetRegionalComponent = () => {
         <InputStyle type="text"></InputStyle>
         <ButtonStyle onClick={onClick}>지역 설정</ButtonStyle>
       </SetRegionalContainer>
-      <ModalComponent modal={modal} setModal={setModal} />
+      <ModalContainer modal={modal} setModal={setModal} />
     </>
   );
 };
