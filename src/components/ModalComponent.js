@@ -37,7 +37,8 @@ const CheckboxContainer = styled.div`
 
 const SelectRegionContainer = styled.div``;
 
-const ModalComponent = ({ modal }) => {
+const ModalComponent = ({ modal, setModal }) => {
+  const [selectRegions, setSelectRegions] = useState([]);
   const checkBoxRef = useRef(null);
 
   const allCheckHandle = (e) => {
@@ -45,6 +46,8 @@ const ModalComponent = ({ modal }) => {
 
     checkBoxRef.current.childNodes.forEach((el) => {
       el.childNodes[0].checked = true;
+
+      setSelectRegions((prev) => [...prev, el.childNodes[0].value]);
     });
   };
 
@@ -53,7 +56,17 @@ const ModalComponent = ({ modal }) => {
 
     checkBoxRef.current.childNodes.forEach((el) => {
       el.childNodes[0].checked = false;
+
+      setSelectRegions([]);
     });
+  };
+
+  const checkHandle = (e) => {};
+
+  const completeRegionSelect = (e) => {
+    e.preventDefault();
+
+    setModal(false);
   };
 
   return (
@@ -80,42 +93,34 @@ const ModalComponent = ({ modal }) => {
           </SelectBoxContainer>
           <FormButton onClick={allCheckHandle}>전체 선택</FormButton>
           <FormButton onClick={allUnCheckHandle}>선택 해제</FormButton>
-          <CheckboxContainer ref={checkBoxRef}>
+          <CheckboxContainer ref={checkBoxRef} onChange={checkHandle}>
             <label>
-              <input type="checkbox" name="region" value="blue" />
+              <input type="checkbox" name="region" value="강남구" />
               강남구
             </label>
             <label>
-              <input type="checkbox" name="region" value="red" />
+              <input type="checkbox" name="region" value="강동구" />
               강동구
             </label>
             <label>
-              <input type="checkbox" name="region" value="red" />
-              강동구
+              <input type="checkbox" name="region" value="성북구" />
+              성북구
             </label>
             <label>
-              <input type="checkbox" name="region" value="red" />
-              강동구
+              <input type="checkbox" name="region" value="강북구" />
+              강북구
             </label>
             <label>
-              <input type="checkbox" name="region" value="red" />
-              강동구
-            </label>
-            <label>
-              <input type="checkbox" name="region" value="red" />
-              강동구
-            </label>
-            <label>
-              <input type="checkbox" name="region" value="red" />
-              강동구
+              <input type="checkbox" name="region" value="서대문구" />
+              서대문구
             </label>
           </CheckboxContainer>
           <SelectRegionContainer>
-            <span>강남구</span>
-            <span>마포구</span>
-            <span>종로구</span>
-            <span>서초구</span>
+            {selectRegions.map((region, i) => {
+              return <span key={i}>{region}</span>;
+            })}
           </SelectRegionContainer>
+          <FormButton onClick={completeRegionSelect}>지역 설정 완료</FormButton>
         </FormContainer>
       ) : (
         <></>

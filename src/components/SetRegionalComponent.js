@@ -51,7 +51,7 @@ const SetRegionalComponent = () => {
         <ButtonStyle onClick={onClick}>지역 설정</ButtonStyle>
       </SetRegionalContainer>
       <MapComponent />
-      <ModalComponent modal={modal} />
+      <ModalComponent modal={modal} setModal={setModal} />
     </>
   );
 };
