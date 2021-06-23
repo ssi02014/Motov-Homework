@@ -44,9 +44,10 @@ const ModalComponent = ({ modal, setModal }) => {
   const allCheckHandle = (e) => {
     e.preventDefault();
 
+    setSelectRegions([]);
+
     checkBoxRef.current.childNodes.forEach((el) => {
       el.childNodes[0].checked = true;
-
       setSelectRegions((prev) => [...prev, el.childNodes[0].value]);
     });
   };
@@ -56,12 +57,17 @@ const ModalComponent = ({ modal, setModal }) => {
 
     checkBoxRef.current.childNodes.forEach((el) => {
       el.childNodes[0].checked = false;
-
       setSelectRegions([]);
     });
   };
 
-  const checkHandle = (e) => {};
+  const checkHandle = (e) => {
+    if (e.target.checked) {
+      setSelectRegions((prev) => [...prev, e.target.value]);
+    } else {
+      setSelectRegions(selectRegions.filter((el) => el !== e.target.value));
+    }
+  };
 
   const completeRegionSelect = (e) => {
     e.preventDefault();
@@ -95,23 +101,23 @@ const ModalComponent = ({ modal, setModal }) => {
           <FormButton onClick={allUnCheckHandle}>선택 해제</FormButton>
           <CheckboxContainer ref={checkBoxRef} onChange={checkHandle}>
             <label>
-              <input type="checkbox" name="region" value="강남구" />
+              <input key="1" type="checkbox" name="region" value="강남구" />
               강남구
             </label>
             <label>
-              <input type="checkbox" name="region" value="강동구" />
+              <input key="2" type="checkbox" name="region" value="강동구" />
               강동구
             </label>
             <label>
-              <input type="checkbox" name="region" value="성북구" />
+              <input key="3" type="checkbox" name="region" value="성북구" />
               성북구
             </label>
             <label>
-              <input type="checkbox" name="region" value="강북구" />
+              <input key="4" type="checkbox" name="region" value="강북구" />
               강북구
             </label>
             <label>
-              <input type="checkbox" name="region" value="서대문구" />
+              <input key="5" type="checkbox" name="region" value="서대문구" />
               서대문구
             </label>
           </CheckboxContainer>
