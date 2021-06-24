@@ -8,9 +8,7 @@ const MapStyle = styled.div`
   height: 100%;
 `;
 
-const MapComponent = ({ detailData, sampleData }) => {
-  const [polygonDatas, setPolygonDatas] = useState([]);
-
+const MapComponent = ({ detailData }) => {
   useEffect(() => {
     const container = document.getElementById("myMap");
     const options = {
@@ -18,31 +16,14 @@ const MapComponent = ({ detailData, sampleData }) => {
       level: 6,
     };
     const map = new kakao.maps.Map(container, options);
-    const path = [];
-
     detailData.map((el) => {
+      const path = [];
       el.polygon.map((el) => {
         path.push(new kakao.maps.LatLng(el[1], el[0]));
       });
+
+      dispalyArea(path, map);
     });
-
-    // let polygon = new kakao.maps.Polygon({
-    //   map: map,
-    //   path: polygonPath, // 그려질 다각형의 좌표 배열입니다
-    //   strokeWeight: 2, // 선의 두께입니다
-    //   strokeColor: "#004c80", // 선의 색깔입니다
-    //   strokeOpacity: 0.8, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-    //   strokeStyle: "solid", // 선의 스타일입니다
-    //   fillColor: "#fff", // 채우기 색깔입니다
-    //   fillOpacity: 0.7, // 채우기 불투명도 입니다
-    // });
-
-    // console.log(polygonPath);
-    // console.log(path);
-    // console.log(polygon);
-    // polygon.setMap(map);
-
-    dispalyArea(path, map);
   }, [detailData]);
 
   const dispalyArea = (path, map) => {
@@ -57,7 +38,6 @@ const MapComponent = ({ detailData, sampleData }) => {
       fillOpacity: 0.7, // 채우기 불투명도 입니다
     });
     console.log(path);
-    console.log(sampleData);
     console.log(polygon);
     polygon.setMap(map);
   };
