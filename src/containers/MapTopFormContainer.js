@@ -52,9 +52,23 @@ const MapTopFormContainer = ({ countryData }) => {
     setCountry([]);
     setSelectCity(e.target.value);
 
+    checkBoxRef.current.childNodes.forEach((el) => {
+      el.childNodes[0].checked = false;
+      setSelectRegions([]);
+    });
+
     countryData[0].maps.forEach((el) => {
       if (el.city === e.target.value) {
         setCountry((prev) => [...prev, el.country]);
+      }
+    });
+  };
+
+  const onSelectCountry = (e) => {
+    checkBoxRef.current.childNodes.forEach((el) => {
+      if (e.target.value === el.childNodes[0].value) {
+        el.childNodes[0].checked = true;
+        setSelectRegions((prev) => [...prev, el.childNodes[0].value]);
       }
     });
   };
@@ -77,6 +91,7 @@ const MapTopFormContainer = ({ countryData }) => {
         onAllUnCheck={onAllUnCheck}
         onCheckCountry={onCheckCountry}
         onSelectCity={onSelectCity}
+        onSelectCountry={onSelectCountry}
         onComplete={onComplete}
       />
     </>

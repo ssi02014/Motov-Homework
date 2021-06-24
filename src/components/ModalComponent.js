@@ -78,6 +78,7 @@ const ModalComponent = ({
   onCheckCountry,
   onComplete,
   onSelectCity,
+  onSelectCountry,
 }) => {
   return (
     <>
@@ -85,14 +86,14 @@ const ModalComponent = ({
         <ModalFormContainer>
           <FormTitle>지역 설정</FormTitle>
           <SelectBoxContainer onChange={onSelectCity}>
-            <option value="">구 선택</option>
+            <option value="">시 선택</option>
             {cityName.map((el, i) => (
               <option value={el} key={i}>
                 {el}
               </option>
             ))}
           </SelectBoxContainer>
-          <SelectBoxContainer>
+          <SelectBoxContainer onChange={onSelectCountry}>
             <option value="">구 선택</option>
             {country.map((el, i) => (
               <option value={el} key={i}>
