@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import SetRegionalComponent from "./components/SetRegionalComponent";
 
@@ -13,6 +13,7 @@ const Container = styled.div`
 `;
 
 function App() {
+  const [countryData, setCountryData] = useState([]);
   useEffect(() => {
     const config = {
       headers: {
@@ -26,12 +27,13 @@ function App() {
         config
       )
       .then((res) => {
-        console.log(res);
+        setCountryData((prev) => [...prev, res.data]);
       });
   }, []);
+
   return (
     <Container>
-      <SetRegionalComponent />
+      <SetRegionalComponent countryData={countryData} />
     </Container>
   );
 }

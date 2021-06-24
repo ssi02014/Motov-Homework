@@ -34,12 +34,13 @@ const ButtonStyle = styled.button`
   }
 `;
 
-const SetRegionalComponent = () => {
+const SetRegionalComponent = ({ countryData }) => {
   const [modal, setModal] = useState(false);
 
   const onClick = (e) => {
     e.preventDefault();
 
+    console.log(countryData);
     setModal(true);
   };
 
