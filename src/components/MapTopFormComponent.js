@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import MapContainer from "../containers/MapContainer";
+import ModalComponent from "./ModalComponent";
 
 const FormContainer = styled.form`
   position: fixed;
@@ -34,25 +34,15 @@ const ButtonStyle = styled.button`
   }
 `;
 
-const SetRegionalComponent = ({ countryData }) => {
-  const [modal, setModal] = useState(false);
-
-  const onClick = (e) => {
-    e.preventDefault();
-
-    console.log(countryData);
-    setModal(true);
-  };
-
+const MapTopFormComponent = ({ onClick }) => {
   return (
     <>
       <FormContainer>
         <InputStyle type="text"></InputStyle>
         <ButtonStyle onClick={onClick}>지역 설정</ButtonStyle>
       </FormContainer>
-      <MapContainer modal={modal} setModal={setModal} />
     </>
   );
 };
 
-export default SetRegionalComponent;
+export default MapTopFormComponent;
