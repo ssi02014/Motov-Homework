@@ -1,7 +1,8 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import MapComponent from "../components/MapComponent";
 
-const MapContainer = () => {
+const MapContainer = ({ countryData, completReigon }) => {
+  console.log(completReigon);
   return (
     <>
       <MapComponent />

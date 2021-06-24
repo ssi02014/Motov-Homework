@@ -1,26 +1,23 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import MapTopFormComponent from "../components/MapTopFormComponent";
 import ModalComponent from "../components/ModalComponent";
 
-const MapTopFormContainer = ({ countryData }) => {
+const MapTopFormContainer = ({ countryData, setCompletRegion }) => {
   const [modal, setModal] = useState(false);
   const [selectRegions, setSelectRegions] = useState([]);
   const [country, setCountry] = useState([]);
   const [selectCity, setSelectCity] = useState("");
   const checkBoxRef = useRef(null);
 
-  // useEffect(() => {
-  //   countryData[0].maps.forEach((el) => {
-  //     console.log(el);
-  //   });
-  // }, []);
-
   const onModal = (e) => {
     e.preventDefault();
     setModal(true);
+    setCountry([]);
+    setSelectRegions([]);
+    setSelectCity("");
   };
 
-  const allCheckHandle = (e) => {
+  const onAllCheck = (e) => {
     e.preventDefault();
 
     setSelectRegions([]);
@@ -31,7 +28,7 @@ const MapTopFormContainer = ({ countryData }) => {
     });
   };
 
-  const allUnCheckHandle = (e) => {
+  const onAllUnCheck = (e) => {
     e.preventDefault();
 
     checkBoxRef.current.childNodes.forEach((el) => {
@@ -40,7 +37,7 @@ const MapTopFormContainer = ({ countryData }) => {
     });
   };
 
-  const checkHandle = (e) => {
+  const onCheckCountry = (e) => {
     if (e.target.checked) {
       setSelectRegions((prev) => [...prev, e.target.value]);
     } else {
@@ -48,14 +45,15 @@ const MapTopFormContainer = ({ countryData }) => {
     }
   };
 
-  const completeRegionSelect = (e) => {
-    e.preventDefault();
-    setModal(false);
-  };
-
-  const selectRegionChange = (e) => {
+  const onSelectCity = (e) => {
     setCountry([]);
     setSelectCity(e.target.value);
+
+    checkBoxRef.current.childNodes.forEach((el) => {
+      el.childNodes[0].checked = false;
+      setSelectRegions([]);
+    });
+
     countryData[0].maps.forEach((el) => {
       if (el.city === e.target.value) {
         setCountry((prev) => [...prev, el.country]);
@@ -63,20 +61,36 @@ const MapTopFormContainer = ({ countryData }) => {
     });
   };
 
+  const onSelectCountry = (e) => {
+    checkBoxRef.current.childNodes.forEach((el) => {
+      if (e.target.value === el.childNodes[0].value) {
+        el.childNodes[0].checked = true;
+        setSelectRegions((prev) => [...prev, el.childNodes[0].value]);
+      }
+    });
+  };
+
+  const onComplete = (e) => {
+    e.preventDefault();
+    setModal(false);
+    setCompletRegion([...selectRegions]);
+  };
+
   return (
     <>
       <MapTopFormComponent onClick={onModal} />
       <ModalComponent
+        checkBoxRef={checkBoxRef}
         modal={modal}
         country={country}
         selectCity={selectCity}
         selectRegions={selectRegions}
-        allCheckHandle={allCheckHandle}
-        allUnCheckHandle={allUnCheckHandle}
-        checkHandle={checkHandle}
-        completeRegionSelect={completeRegionSelect}
-        selectRegionChange={selectRegionChange}
-        checkBoxRef={checkBoxRef}
+        onAllCheck={onAllCheck}
+        onAllUnCheck={onAllUnCheck}
+        onCheckCountry={onCheckCountry}
+        onSelectCity={onSelectCity}
+        onSelectCountry={onSelectCountry}
+        onComplete={onComplete}
       />
     </>
   );

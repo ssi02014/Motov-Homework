@@ -8,11 +8,13 @@ const ModalFormContainer = styled.form`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 600px;
+  min-height: 500px;
   padding: 1rem;
   z-index: 10;
   background-color: #fff;
   border: 1px solid #999;
   border-radius: 8px;
+  overflow-y: auto;
 `;
 
 const FormTitle = styled.h1`
@@ -54,62 +56,81 @@ const CheckBoxContainer = styled.div`
 `;
 
 const CheckBoxLabel = styled.label`
-  /* display: inline-block; */
   display: flex;
   justify-content: flex-start;
   align-items: center;
   width: 33%;
   height: 40px;
-  border-top: 1px solid #999;
+  border-bottom: 1px solid #999;
+  border-right: 1px solid #999;
+
+  &:nth-child(3n - 2) {
+    border-left: 1px solid #999;
+  }
+  &:nth-child(1),
+  &:nth-child(2),
+  &:nth-child(3) {
+    border-top: 1px solid #999;
+  }
 `;
 
-const CheckBoxInput = styled.input``;
+const CheckBoxInput = styled.input`
+  margin-left: 8px;
+`;
 
-const SelectRegionContainer = styled.div``;
+const SelectCountryContainer = styled.div`
+  margin-bottom: 20px;
+`;
+
+const SelectCountrySpan = styled.span`
+  display: inline-block;
+  width: 33%;
+  height: 30px;
+`;
 
 const ModalComponent = ({
-  selectRegions,
-  allCheckHandle,
-  allUnCheckHandle,
-  checkHandle,
-  completeRegionSelect,
   checkBoxRef,
   modal,
   country,
   selectCity,
-  selectRegionChange,
+  selectRegions,
+  onAllCheck,
+  onAllUnCheck,
+  onCheckCountry,
+  onComplete,
+  onSelectCity,
+  onSelectCountry,
 }) => {
-  console.log(country);
   return (
     <>
       {modal ? (
         <ModalFormContainer>
           <FormTitle>지역 설정</FormTitle>
-          <SelectBoxContainer onChange={selectRegionChange}>
-            <option value="">구 선택</option>
-            {cityName.map((el, i) => (
-              <option value={el} key={i}>
+          <SelectBoxContainer onChange={onSelectCity}>
+            <option value=""> 선택</option>
+            {cityName.map((el, idx) => (
+              <option value={el} key={idx}>
                 {el}
               </option>
             ))}
           </SelectBoxContainer>
-          <SelectBoxContainer>
+          <SelectBoxContainer onChange={onSelectCountry}>
             <option value="">구 선택</option>
-            {country.map((el, i) => (
-              <option value={el} key={i}>
+            {country.map((el, idx) => (
+              <option value={el} key={idx}>
                 {el}
               </option>
             ))}
           </SelectBoxContainer>
-          <FormButton onClick={allCheckHandle}>전체 선택</FormButton>
-          <FormButton onClick={allUnCheckHandle}>선택 해제</FormButton>
+          <FormButton onClick={onAllCheck}>전체 선택</FormButton>
+          <FormButton onClick={onAllUnCheck}>선택 해제</FormButton>
           <FormRegionTitle>{selectCity}</FormRegionTitle>
-          <CheckBoxContainer ref={checkBoxRef} onChange={checkHandle}>
-            {country.map((el, i) => {
+          <CheckBoxContainer ref={checkBoxRef} onChange={onCheckCountry}>
+            {country.map((el, idx) => {
               return (
                 <CheckBoxLabel>
                   <CheckBoxInput
-                    key={i}
+                    key={idx}
                     type="checkbox"
                     name="region"
                     value={el}
@@ -120,12 +141,12 @@ const ModalComponent = ({
               );
             })}
           </CheckBoxContainer>
-          <SelectRegionContainer>
-            {selectRegions.map((region, i) => {
-              return <span key={i}>{region}</span>;
+          <SelectCountryContainer>
+            {selectRegions.map((region, idx) => {
+              return <SelectCountrySpan key={idx}>{region}</SelectCountrySpan>;
             })}
-          </SelectRegionContainer>
-          <FormButton onClick={completeRegionSelect}>지역 설정 완료</FormButton>
+          </SelectCountryContainer>
+          <FormButton onClick={onComplete}>지역 설정 완료</FormButton>
         </ModalFormContainer>
       ) : (
         <></>

@@ -15,7 +15,9 @@ const Container = styled.div`
 
 function App() {
   const [countryData, setCountryData] = useState([]);
+  const [completReigon, setCompletRegion] = useState([]);
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     setLoading(false);
     axios
@@ -32,8 +34,14 @@ function App() {
     <Container>
       {loading ? (
         <>
-          <MapTopFormContainer countryData={countryData} />
-          <MapContainer countryData={countryData} />
+          <MapTopFormContainer
+            countryData={countryData}
+            setCompletRegion={setCompletRegion}
+          />
+          <MapContainer
+            countryData={countryData}
+            completReigon={completReigon}
+          />
         </>
       ) : (
         <h1>Loading</h1>

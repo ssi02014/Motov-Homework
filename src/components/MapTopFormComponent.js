@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import ModalComponent from "./ModalComponent";
 
 const FormContainer = styled.form`
   position: fixed;
