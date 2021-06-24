@@ -8,7 +8,7 @@ const ModalFormContainer = styled.form`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 600px;
-  height: 700px;
+  min-height: 500px;
   padding: 1rem;
   z-index: 10;
   background-color: #fff;

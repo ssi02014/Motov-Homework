@@ -12,6 +12,7 @@ const MapTopFormContainer = ({ countryData, setCompletRegion }) => {
   const onModal = (e) => {
     e.preventDefault();
     setModal(true);
+    setCountry([]);
     setSelectRegions([]);
     setSelectCity("");
   };
