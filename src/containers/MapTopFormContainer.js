@@ -2,22 +2,18 @@ import React, { useState, useRef } from "react";
 import MapTopFormComponent from "../components/MapTopFormComponent";
 import ModalComponent from "../components/ModalComponent";
 
-const MapTopFormContainer = ({ countryData }) => {
+const MapTopFormContainer = ({ countryData, setCompletRegion }) => {
   const [modal, setModal] = useState(false);
   const [selectRegions, setSelectRegions] = useState([]);
   const [country, setCountry] = useState([]);
   const [selectCity, setSelectCity] = useState("");
   const checkBoxRef = useRef(null);
 
-  // useEffect(() => {
-  //   countryData[0].maps.forEach((el) => {
-  //     console.log(el);
-  //   });
-  // }, []);
-
   const onModal = (e) => {
     e.preventDefault();
     setModal(true);
+    setSelectRegions([]);
+    setSelectCity("");
   };
 
   const onAllCheck = (e) => {
@@ -76,6 +72,7 @@ const MapTopFormContainer = ({ countryData }) => {
   const onComplete = (e) => {
     e.preventDefault();
     setModal(false);
+    setCompletRegion([...selectRegions]);
   };
 
   return (
