@@ -8,11 +8,13 @@ const ModalFormContainer = styled.form`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 600px;
+  height: 700px;
   padding: 1rem;
   z-index: 10;
   background-color: #fff;
   border: 1px solid #999;
   border-radius: 8px;
+  overflow-y: auto;
 `;
 
 const FormTitle = styled.h1`
@@ -76,7 +78,15 @@ const CheckBoxInput = styled.input`
   margin-left: 8px;
 `;
 
-const SelectRegionContainer = styled.div``;
+const SelectCountryContainer = styled.div`
+  margin-bottom: 20px;
+`;
+
+const SelectCountrySpan = styled.span`
+  display: inline-block;
+  width: 33%;
+  height: 30px;
+`;
 
 const ModalComponent = ({
   checkBoxRef,
@@ -131,11 +141,11 @@ const ModalComponent = ({
               );
             })}
           </CheckBoxContainer>
-          <SelectRegionContainer>
+          <SelectCountryContainer>
             {selectRegions.map((region, idx) => {
-              return <span key={idx}>{region}</span>;
+              return <SelectCountrySpan key={idx}>{region}</SelectCountrySpan>;
             })}
-          </SelectRegionContainer>
+          </SelectCountryContainer>
           <FormButton onClick={onComplete}>지역 설정 완료</FormButton>
         </ModalFormContainer>
       ) : (
