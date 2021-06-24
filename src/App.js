@@ -14,7 +14,7 @@ const Container = styled.div`
 
 function App() {
   const [countryData, setCountryData] = useState([]);
-  const [completReigon, setCompleteRegion] = useState([]);
+  const [completeReigon, setCompleteRegion] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ function App() {
           />
           <MapContainer
             countryData={countryData}
-            completReigon={completReigon}
+            completReigon={completeReigon}
           />
         </>
       ) : (

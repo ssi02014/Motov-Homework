@@ -8,12 +8,17 @@ const MapContainer = ({ countryData, completReigon }) => {
   useEffect(() => {
     console.log(completReigon);
     countryData[0].maps.forEach((el) => {
-      if (completReigon.includes(el.country)) {
+      if (
+        completReigon.includes(el.country) &&
+        completReigon.includes(el.city)
+      ) {
         const data = {
           city: el.city,
           country: el.country,
           polygon: el.polygon,
         };
+
+        console.log(data);
         setDetailData((prev) => [...prev, data]);
       }
     });
