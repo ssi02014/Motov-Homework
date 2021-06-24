@@ -8,7 +8,8 @@ const MapStyle = styled.div`
   height: 100%;
 `;
 
-const MapComponent = () => {
+const MapComponent = ({ detailData }) => {
+  console.log(detailData);
   useEffect(() => {
     const container = document.getElementById("myMap");
     const options = {

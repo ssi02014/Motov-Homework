@@ -5,7 +5,6 @@ import MapContainer from "./containers/MapContainer";
 import MapTopFormContainer from "./containers/MapTopFormContainer";
 
 const Container = styled.div`
-  /* position: relative; */
   width: 100%;
   height: 100vh;
   margin: 0 auto;
@@ -15,7 +14,7 @@ const Container = styled.div`
 
 function App() {
   const [countryData, setCountryData] = useState([]);
-  const [completReigon, setCompletRegion] = useState([]);
+  const [completReigon, setCompleteRegion] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -36,7 +35,7 @@ function App() {
         <>
           <MapTopFormContainer
             countryData={countryData}
-            setCompletRegion={setCompletRegion}
+            setCompleteRegion={setCompleteRegion}
           />
           <MapContainer
             countryData={countryData}
