@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { cityName } from "../data/data";
 
 const ModalFormContainer = styled.form`
   position: fixed;
@@ -73,112 +74,62 @@ const ModalComponent = ({
   checkHandle,
   completeRegionSelect,
   checkBoxRef,
+  modal,
+  country,
+  selectCity,
+  selectRegionChange,
 }) => {
+  console.log(country);
   return (
     <>
-      <ModalFormContainer>
-        <FormTitle>지역 설정</FormTitle>
-        <SelectBoxContainer>
-          <option value="서울특별시">서울특별시</option>
-          <option value="서울특별시">경기도</option>
-          <option value="서울특별시">강원도</option>
-          <option value="서울특별시">강원도</option>
-          <option value="서울특별시">강원도</option>
-          <option value="서울특별시">강원도</option>
-        </SelectBoxContainer>
-        <SelectBoxContainer>
-          <option value="">구 선택</option>
-          <option value="서울특별시">서울특별시</option>
-          <option value="서울특별시">경기도</option>
-          <option value="서울특별시">강원도</option>
-          <option value="서울특별시">강원도</option>
-          <option value="서울특별시">강원도</option>
-          <option value="서울특별시">강원도</option>
-        </SelectBoxContainer>
-        <FormButton onClick={allCheckHandle}>전체 선택</FormButton>
-        <FormButton onClick={allUnCheckHandle}>선택 해제</FormButton>
-        <FormRegionTitle>서울 특별시</FormRegionTitle>
-        <CheckBoxContainer ref={checkBoxRef} onChange={checkHandle}>
-          <CheckBoxLabel>
-            <CheckBoxInput
-              type="checkbox"
-              name="region"
-              value="강남구"
-              id="region"
-            />
-            강남구
-          </CheckBoxLabel>
-          <CheckBoxLabel>
-            <CheckBoxInput
-              type="checkbox"
-              name="region"
-              value="강동구"
-              id="region"
-            />
-            강동구
-          </CheckBoxLabel>
-          <CheckBoxLabel>
-            <CheckBoxInput
-              type="checkbox"
-              name="region"
-              value="성북구"
-              id="region"
-            />
-            성북구
-          </CheckBoxLabel>
-          <CheckBoxLabel>
-            <CheckBoxInput
-              type="checkbox"
-              name="region"
-              value="강북구"
-              id="region"
-            />
-            강북구
-          </CheckBoxLabel>
-          <CheckBoxLabel>
-            <CheckBoxInput
-              type="checkbox"
-              name="region"
-              value="서대문구"
-              id="region"
-            />
-            서대문구
-          </CheckBoxLabel>
-          <CheckBoxLabel>
-            <CheckBoxInput
-              type="checkbox"
-              name="region"
-              value="도봉구"
-              id="region"
-            />
-            도봉구
-          </CheckBoxLabel>
-          <CheckBoxLabel>
-            <CheckBoxInput
-              type="checkbox"
-              name="region"
-              value="구로구"
-              id="region"
-            />
-            구로구
-          </CheckBoxLabel>
-          <CheckBoxLabel>
-            <CheckBoxInput
-              type="checkbox"
-              name="region"
-              value="강서구"
-              id="region"
-            />
-            강서구
-          </CheckBoxLabel>
-        </CheckBoxContainer>
-        <SelectRegionContainer>
-          {selectRegions.map((region, i) => {
-            return <span key={i}>{region}</span>;
-          })}
-        </SelectRegionContainer>
-        <FormButton onClick={completeRegionSelect}>지역 설정 완료</FormButton>
-      </ModalFormContainer>
+      {modal ? (
+        <ModalFormContainer>
+          <FormTitle>지역 설정</FormTitle>
+          <SelectBoxContainer onChange={selectRegionChange}>
+            <option value="">구 선택</option>
+            {cityName.map((el, i) => (
+              <option value={el} key={i}>
+                {el}
+              </option>
+            ))}
+          </SelectBoxContainer>
+          <SelectBoxContainer>
+            <option value="">구 선택</option>
+            {country.map((el, i) => (
+              <option value={el} key={i}>
+                {el}
+              </option>
+            ))}
+          </SelectBoxContainer>
+          <FormButton onClick={allCheckHandle}>전체 선택</FormButton>
+          <FormButton onClick={allUnCheckHandle}>선택 해제</FormButton>
+          <FormRegionTitle>{selectCity}</FormRegionTitle>
+          <CheckBoxContainer ref={checkBoxRef} onChange={checkHandle}>
+            {country.map((el, i) => {
+              return (
+                <CheckBoxLabel>
+                  <CheckBoxInput
+                    key={i}
+                    type="checkbox"
+                    name="region"
+                    value={el}
+                    id="region"
+                  />
+                  {el}
+                </CheckBoxLabel>
+              );
+            })}
+          </CheckBoxContainer>
+          <SelectRegionContainer>
+            {selectRegions.map((region, i) => {
+              return <span key={i}>{region}</span>;
+            })}
+          </SelectRegionContainer>
+          <FormButton onClick={completeRegionSelect}>지역 설정 완료</FormButton>
+        </ModalFormContainer>
+      ) : (
+        <></>
+      )}
     </>
   );
 };

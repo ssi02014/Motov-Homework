@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import SetRegionalComponent from "./components/SetRegionalComponent";
+import MapContainer from "./containers/MapContainer";
+import MapTopFormContainer from "./containers/MapTopFormContainer";
 
 const Container = styled.div`
   /* position: relative; */
@@ -14,26 +15,29 @@ const Container = styled.div`
 
 function App() {
   const [countryData, setCountryData] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
+    setLoading(false);
     axios
       .get(
-        `https://motov-coding-homework.s3.ap-northeast-2.amazonaws.com/country.json`,
-        config
+        `https://motov-coding-homework.s3.ap-northeast-2.amazonaws.com/country.json`
       )
       .then((res) => {
         setCountryData((prev) => [...prev, res.data]);
+        setLoading(true);
       });
   }, []);
 
   return (
     <Container>
-      <SetRegionalComponent countryData={countryData} />
+      {loading ? (
+        <>
+          <MapTopFormContainer countryData={countryData} />
+          <MapContainer countryData={countryData} />
+        </>
+      ) : (
+        <h1>Loading</h1>
+      )}
     </Container>
   );
 }
