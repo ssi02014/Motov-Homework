@@ -101,7 +101,6 @@ const ModalComponent = ({
   onSelectCity,
   onSelectCountry,
 }) => {
-  console.log(selectRegions);
   return (
     <>
       <ModalFormContainer>

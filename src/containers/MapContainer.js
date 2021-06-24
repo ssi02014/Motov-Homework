@@ -3,24 +3,22 @@ import MapComponent from "../components/MapComponent";
 
 const MapContainer = ({ countryData, completReigon }) => {
   const [detailData, setDetailData] = useState([]);
-  console.log(countryData);
 
   useEffect(() => {
-    console.log(completReigon);
-    countryData[0].maps.forEach((el) => {
-      if (
-        completReigon.includes(el.country) &&
-        completReigon.includes(el.city)
-      ) {
-        const data = {
-          city: el.city,
-          country: el.country,
-          polygon: el.polygon,
-        };
-
-        console.log(data);
-        setDetailData((prev) => [...prev, data]);
-      }
+    countryData[0].maps.forEach((map) => {
+      completReigon.map((el) => {
+        if (el.city === map.city && el.country === map.country) {
+          const data = {
+            city: map.city,
+            country: map.country,
+            polygon: map.polygon
+              .join("")
+              .split("_")
+              .map((el) => el.split(",")),
+          };
+          setDetailData((prev) => [...prev, data]);
+        }
+      });
     });
   }, [completReigon]);
   return (
