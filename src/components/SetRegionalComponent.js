@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import MapComponent from "./MapComponent";
-import ModalComponent from "./ModalComponent";
+import MapContainer from "../containers/MapContainer";
 
-const SetRegionalContainer = styled.div`
+const FormContainer = styled.form`
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
@@ -46,12 +45,11 @@ const SetRegionalComponent = () => {
 
   return (
     <>
-      <SetRegionalContainer>
+      <FormContainer>
         <InputStyle type="text"></InputStyle>
         <ButtonStyle onClick={onClick}>지역 설정</ButtonStyle>
-      </SetRegionalContainer>
-      <MapComponent />
-      <ModalComponent modal={modal} />
+      </FormContainer>
+      <MapContainer modal={modal} setModal={setModal} />
     </>
   );
 };
