@@ -28,7 +28,6 @@ const RegionSettingContainer = ({ countryData, setCompleteRegion }) => {
         city: selectCity,
         country: el.childNodes[0].value,
       };
-
       el.childNodes[0].checked = true;
       setSelectRegions((prev) => [...prev, data]);
     });
@@ -97,7 +96,6 @@ const RegionSettingContainer = ({ countryData, setCompleteRegion }) => {
         el.childNodes[0].checked = false;
       }
     });
-
     setSelectRegions(selectRegions.filter((el) => el.country !== innerText));
   };
 

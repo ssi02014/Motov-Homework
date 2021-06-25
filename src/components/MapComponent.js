@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 const { kakao } = window;
@@ -17,10 +17,10 @@ const MapComponent = ({ detailData }) => {
     };
     const map = new kakao.maps.Map(container, options);
 
-    detailData.map((el) => {
-      const path = [];
-      el.polygon.map((el) => {
-        path.push(new kakao.maps.LatLng(el[1], el[0]));
+    detailData.forEach((el) => {
+      let path = [];
+      el.polygon.forEach((el) => {
+        path = [...path, new kakao.maps.LatLng(el[1], el[0])];
       });
 
       dispalyArea(path, map);
