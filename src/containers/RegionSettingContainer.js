@@ -34,11 +34,11 @@ const RegionSettingContainer = ({ countryData, setCompleteRegion }) => {
   };
 
   const onInputMouseDown = () => {
-    inputValidation();
+    onValidation();
   };
 
   // 유효성 검사
-  const inputValidation = () => {
+  const onValidation = () => {
     const { city, country } = formValue;
 
     const citySet = new Set();
