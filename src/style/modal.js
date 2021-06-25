@@ -11,7 +11,7 @@ export const ModalFormWrapper = styled.form`
   padding: 1rem;
   z-index: 10;
   background-color: #fff;
-  border: 1px solid #999;
+  border: 1px solid #fdd835;
   border-radius: 8px;
   overflow-y: auto;
 `;
@@ -21,7 +21,7 @@ export const FormTitle = styled.h1`
   margin-bottom: 16px;
 `;
 
-export const FormRegionTitle = styled.h3`
+export const FormSubTitle = styled.h3`
   margin: 30px 0 10px 0;
 `;
 
@@ -39,7 +39,7 @@ export const FormButton = styled.button`
 `;
 
 export const SelectBoxWrapper = styled.select`
-  width: 150px;
+  width: 170px;
   margin-right: 20px;
   border: none;
   border-bottom: 1px solid #999;
@@ -79,10 +79,47 @@ export const CheckBoxInput = styled.input`
 
 export const SelectCountryWrapper = styled.div`
   margin-bottom: 20px;
-`;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 
-export const SelectCountrySpan = styled.span`
-  display: inline-block;
-  width: 33%;
-  height: 30px;
+  p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5px;
+    width: 31%;
+    height: 30px;
+    margin: 0;
+    border-bottom: 1px solid #999;
+    border-right: 1px solid #999;
+
+    &:nth-child(3n - 2) {
+      border-left: 1px solid #999;
+    }
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(3) {
+      border-top: 1px solid #999;
+    }
+
+    button {
+      position: relative;
+      padding: 8px;
+      background-color: #fff;
+      border: none;
+      cursor: pointer;
+      &::after {
+        position: absolute;
+        content: "X";
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1.2rem;
+      }
+      &:hover {
+        color: #999;
+      }
+    }
+  }
 `;

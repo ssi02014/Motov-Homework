@@ -7,6 +7,7 @@ const RegionSettingContainer = ({ countryData, setCompleteRegion }) => {
   const [selectRegions, setSelectRegions] = useState([]);
   const [country, setCountry] = useState([]);
   const [selectCity, setSelectCity] = useState("");
+
   const checkBoxRef = useRef(null);
 
   const onModal = (e) => {
@@ -86,6 +87,20 @@ const RegionSettingContainer = ({ countryData, setCompleteRegion }) => {
     }
   };
 
+  const onRemove = (e) => {
+    e.preventDefault();
+
+    const innerText = e.target.parentNode.innerText;
+
+    checkBoxRef.current.childNodes.forEach((el) => {
+      if (innerText === el.childNodes[0].value) {
+        el.childNodes[0].checked = false;
+      }
+    });
+
+    setSelectRegions(selectRegions.filter((el) => el.country !== innerText));
+  };
+
   const onComplete = (e) => {
     e.preventDefault();
     setModal(false);
@@ -107,6 +122,7 @@ const RegionSettingContainer = ({ countryData, setCompleteRegion }) => {
           onCheckCountry={onCheckCountry}
           onSelectCity={onSelectCity}
           onSelectCountry={onSelectCountry}
+          onRemove={onRemove}
           onComplete={onComplete}
         />
       ) : (

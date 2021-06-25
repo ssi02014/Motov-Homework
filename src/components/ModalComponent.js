@@ -4,14 +4,13 @@ import { cityName } from "../data/data";
 import {
   ModalFormWrapper,
   FormTitle,
-  FormRegionTitle,
+  FormSubTitle,
   FormButton,
   SelectBoxWrapper,
   CheckBoxWrapper,
   CheckBoxLabel,
   CheckBoxInput,
   SelectCountryWrapper,
-  SelectCountrySpan,
 } from "../style/modal";
 
 const ModalComponent = ({
@@ -22,6 +21,7 @@ const ModalComponent = ({
   onAllCheck,
   onAllUnCheck,
   onCheckCountry,
+  onRemove,
   onComplete,
   onSelectCity,
   onSelectCountry,
@@ -31,7 +31,7 @@ const ModalComponent = ({
       <ModalFormWrapper>
         <FormTitle>지역 설정</FormTitle>
         <SelectBoxWrapper onChange={onSelectCity}>
-          <option value=""> 선택</option>
+          <option value="">시 선택</option>
           {cityName.map((el, idx) => (
             <option value={el} key={idx}>
               {el}
@@ -48,7 +48,7 @@ const ModalComponent = ({
         </SelectBoxWrapper>
         <FormButton onClick={onAllCheck}>전체 선택</FormButton>
         <FormButton onClick={onAllUnCheck}>선택 해제</FormButton>
-        <FormRegionTitle>{selectCity}</FormRegionTitle>
+        <FormSubTitle>{selectCity}</FormSubTitle>
         <CheckBoxWrapper ref={checkBoxRef} onChange={onCheckCountry}>
           {country.map((el, idx) => {
             return (
@@ -65,10 +65,14 @@ const ModalComponent = ({
             );
           })}
         </CheckBoxWrapper>
+        <FormSubTitle>선택 도시</FormSubTitle>
         <SelectCountryWrapper>
           {selectRegions.map((region, idx) => {
             return (
-              <SelectCountrySpan key={idx}>{region.country}</SelectCountrySpan>
+              <p key={idx}>
+                {region.country}
+                <button onClick={onRemove} />
+              </p>
             );
           })}
         </SelectCountryWrapper>
