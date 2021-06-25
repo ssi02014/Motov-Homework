@@ -1,21 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import MapContainer from "./containers/MapContainer";
-import MapTopFormContainer from "./containers/MapTopFormContainer";
-
-const Container = styled.div`
-  /* position: relative; */
-  width: 100%;
-  height: 100vh;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-`;
+import RegionSettingContainer from "./containers/RegionSettingContainer";
+//style
+import { Wrapper } from "./style/main";
 
 function App() {
   const [countryData, setCountryData] = useState([]);
-  const [completReigon, setCompletRegion] = useState([]);
+  const [completeReigon, setCompleteRegion] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -31,22 +23,22 @@ function App() {
   }, []);
 
   return (
-    <Container>
+    <Wrapper>
       {loading ? (
         <>
-          <MapTopFormContainer
+          <RegionSettingContainer
             countryData={countryData}
-            setCompletRegion={setCompletRegion}
+            setCompleteRegion={setCompleteRegion}
           />
           <MapContainer
             countryData={countryData}
-            completReigon={completReigon}
+            completReigon={completeReigon}
           />
         </>
       ) : (
         <h1>Loading</h1>
       )}
-    </Container>
+    </Wrapper>
   );
 }
 
