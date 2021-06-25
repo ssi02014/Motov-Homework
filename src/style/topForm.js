@@ -21,16 +21,16 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
-  border: 1px solid #999;
+  width: 80px;
   border-radius: 4px;
   cursor: pointer;
-  padding: 8px 8px;
+  padding: 8px;
   margin-right: 5px;
   font-weight: bold;
-  background-color: #fff9c4;
+  background-color: ${(props) => (props.bgWhite ? "#fff" : "#fff9c4")};
   border: 1px solid #fdd835;
 
   &:hover {
-    background-color: #ffee58;
+    background-color: ${(props) => (props.bgWhite ? "#fffde7" : "#fff176")};
   }
 `;
