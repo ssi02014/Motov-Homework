@@ -52,9 +52,8 @@ const ModalComponent = ({
         <CheckBoxWrapper ref={checkBoxRef} onChange={onCheckCountry}>
           {selectOptionCountry.map((el, idx) => {
             return (
-              <CheckBoxLabel>
+              <CheckBoxLabel key={idx}>
                 <CheckBoxInput
-                  key={idx}
                   type="checkbox"
                   name="region"
                   value={el}
