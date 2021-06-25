@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import MapComponent from "../components/MapComponent";
 
+const { kakao } = window;
+
 const MapContainer = ({ countryData, completeReigon }) => {
   const [detailData, setDetailData] = useState([]);
 
@@ -22,9 +24,36 @@ const MapContainer = ({ countryData, completeReigon }) => {
     });
   }, [completeReigon]);
 
+  const dispalyArea = (path, map) => {
+    let polygon = new kakao.maps.Polygon({
+      map: map,
+      path: path,
+      strokeWeight: 2,
+      strokeColor: randomColor(),
+      strokeOpacity: 0.8,
+      strokeStyle: "solid",
+      fillColor: "#fff",
+      fillOpacity: 0.7,
+    });
+    polygon.setMap(map);
+  };
+
+  const randomColor = () => {
+    const r = Math.round(Math.random() * 255);
+    const g = Math.round(Math.random() * 255);
+    const b = Math.round(Math.random() * 255);
+
+    const rgb = `rgb(${r},${g},${b})`;
+    return rgb;
+  };
+
   return (
     <>
-      <MapComponent detailData={detailData} />
+      <MapComponent
+        detailData={detailData}
+        kakao={kakao}
+        dispalyArea={dispalyArea}
+      />
     </>
   );
 };

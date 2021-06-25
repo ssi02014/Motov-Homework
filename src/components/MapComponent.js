@@ -1,14 +1,7 @@
 import React, { useEffect } from "react";
-import styled from "styled-components";
+import { MapWrapper } from "../style/map";
 
-const { kakao } = window;
-
-const MapWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-`;
-
-const MapComponent = ({ detailData }) => {
+const MapComponent = ({ detailData, dispalyArea, kakao }) => {
   useEffect(() => {
     const container = document.getElementById("myMap");
     const options = {
@@ -17,38 +10,16 @@ const MapComponent = ({ detailData }) => {
     };
     const map = new kakao.maps.Map(container, options);
 
-    detailData.forEach((el) => {
+    detailData.forEach((data) => {
       let path = [];
-      el.polygon.forEach((el) => {
-        path = [...path, new kakao.maps.LatLng(el[1], el[0])];
+
+      data.polygon.forEach((latAndLng) => {
+        path = [...path, new kakao.maps.LatLng(latAndLng[1], latAndLng[0])];
       });
 
       dispalyArea(path, map);
     });
   }, [detailData]);
-
-  const dispalyArea = (path, map) => {
-    let polygon = new kakao.maps.Polygon({
-      map: map,
-      path: path,
-      strokeWeight: 2,
-      strokeColor: randomColor(),
-      strokeOpacity: 0.8,
-      strokeStyle: "solid",
-      fillColor: "#fff",
-      fillOpacity: 0.7,
-    });
-    polygon.setMap(map);
-  };
-
-  const randomColor = () => {
-    const r = Math.round(Math.random() * 255);
-    const g = Math.round(Math.random() * 255);
-    const b = Math.round(Math.random() * 255);
-
-    const rgb = `rgb(${r},${g},${b})`;
-    return rgb;
-  };
 
   return (
     <>
