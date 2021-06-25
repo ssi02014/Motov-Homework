@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import MapComponent from "../components/MapComponent";
 
-const MapContainer = ({ countryData, completReigon }) => {
+const MapContainer = ({ countryData, completeReigon }) => {
   const [detailData, setDetailData] = useState([]);
 
   useEffect(() => {
-    countryData[0].maps.forEach((map) => {
-      completReigon.map((el) => {
+    countryData.forEach((map) => {
+      completeReigon.forEach((el) => {
         if (el.city === map.city && el.country === map.country) {
           const data = {
             city: map.city,
-            country: map.country,
+            country: map.countr,
             polygon: map.polygon
               .join("")
               .split("_")
@@ -20,7 +20,8 @@ const MapContainer = ({ countryData, completReigon }) => {
         }
       });
     });
-  }, [completReigon]);
+  }, [completeReigon]);
+
   return (
     <>
       <MapComponent detailData={detailData} />

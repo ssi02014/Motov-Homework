@@ -15,7 +15,7 @@ import {
 
 const ModalComponent = ({
   checkBoxRef,
-  country,
+  selectOptionCountry,
   selectCity,
   selectRegions,
   onAllCheck,
@@ -40,7 +40,7 @@ const ModalComponent = ({
         </SelectBoxWrapper>
         <SelectBoxWrapper onChange={onSelectCountry}>
           <option value="">구 선택</option>
-          {country.map((el, idx) => (
+          {selectOptionCountry.map((el, idx) => (
             <option value={el} key={idx}>
               {el}
             </option>
@@ -50,7 +50,7 @@ const ModalComponent = ({
         <FormButton onClick={onAllUnCheck}>선택 해제</FormButton>
         <FormSubTitle>{selectCity}</FormSubTitle>
         <CheckBoxWrapper ref={checkBoxRef} onChange={onCheckCountry}>
-          {country.map((el, idx) => {
+          {selectOptionCountry.map((el, idx) => {
             return (
               <CheckBoxLabel>
                 <CheckBoxInput

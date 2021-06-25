@@ -4,20 +4,80 @@ import ModalComponent from "../components/ModalComponent";
 
 const RegionSettingContainer = ({ countryData, setCompleteRegion }) => {
   const [modal, setModal] = useState(false);
-  const [selectRegions, setSelectRegions] = useState([]);
-  const [country, setCountry] = useState([]);
+  const [selectOptionCountry, setSelectOptionCountry] = useState([]);
   const [selectCity, setSelectCity] = useState("");
+  const [selectRegions, setSelectRegions] = useState([]);
+  const [formValue, setFormValue] = useState({
+    city: "",
+    country: "",
+  });
 
+  const inputCityRef = useRef(null);
+  const inputCountryRef = useRef(null);
   const checkBoxRef = useRef(null);
 
+  // Modal ON/OFF
   const onModal = (e) => {
     e.preventDefault();
     setModal(true);
-    setCountry([]);
+    setSelectOptionCountry([]);
     setSelectRegions([]);
     setSelectCity("");
   };
 
+  // Input Functions
+  const onInputChange = (e) => {
+    setFormValue({
+      ...formValue,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onInputMouseDown = () => {
+    onValidation();
+  };
+
+  // 유효성 검사
+  const onValidation = () => {
+    const { city, country } = formValue;
+
+    const citySet = new Set();
+    const countrySet = new Set();
+
+    countryData.forEach((data) => {
+      if (city === data.city) countrySet.add(data.country);
+      citySet.add(data.city);
+    });
+
+    const cityList = Array.from(citySet);
+    const countryList = Array.from(countrySet);
+
+    if (!city.length || !country.length) {
+      alert("빈 칸 없이 입력해주시기 바랍니다.");
+    } else if (!cityList.includes(city)) {
+      alert("City를 제대로 입력해주시기 바랍니다.");
+    } else if (!countryList.includes(country)) {
+      alert("Country를 제대로 입력해주시기 바랍니다.");
+    } else {
+      setSelectRegions([formValue]);
+    }
+  };
+
+  const onInputComplete = (e) => {
+    e.preventDefault();
+
+    setCompleteRegion([...selectRegions]);
+
+    // Input Value 초기화
+    inputCityRef.current.value = "";
+    inputCountryRef.current.value = "";
+    setFormValue({
+      city: "",
+      country: "",
+    });
+  };
+
+  // Modal Functions
   const onAllCheck = (e) => {
     e.preventDefault();
 
@@ -43,17 +103,17 @@ const RegionSettingContainer = ({ countryData, setCompleteRegion }) => {
   };
 
   const onSelectCity = (e) => {
-    setCountry([]);
     setSelectCity(e.target.value);
+    setSelectOptionCountry([]);
 
     checkBoxRef.current.childNodes.forEach((el) => {
       el.childNodes[0].checked = false;
       setSelectRegions([]);
     });
 
-    countryData[0].maps.forEach((el) => {
+    countryData.forEach((el) => {
       if (el.city === e.target.value) {
-        setCountry((prev) => [...prev, el.country]);
+        setSelectOptionCountry((prev) => [...prev, el.country]);
       }
     });
   };
@@ -107,12 +167,18 @@ const RegionSettingContainer = ({ countryData, setCompleteRegion }) => {
 
   return (
     <>
-      <MapTopFormComponent onClick={onModal} />
+      <MapTopFormComponent
+        onModal={onModal}
+        onInputChange={onInputChange}
+        onInputComplete={onInputComplete}
+        onInputMouseDown={onInputMouseDown}
+        inputCityRef={inputCityRef}
+        inputCountryRef={inputCountryRef}
+      />
       {modal ? (
         <ModalComponent
           checkBoxRef={checkBoxRef}
-          modal={modal}
-          country={country}
+          selectOptionCountry={selectOptionCountry}
           selectCity={selectCity}
           selectRegions={selectRegions}
           onAllCheck={onAllCheck}

@@ -17,7 +17,8 @@ function App() {
         `https://motov-coding-homework.s3.ap-northeast-2.amazonaws.com/country.json`
       )
       .then((res) => {
-        setCountryData((prev) => [...prev, res.data]);
+        // setCountryData((prev) => [...prev, res.data]);
+        setCountryData(res.data.maps);
         setLoading(true);
       });
   }, []);
@@ -32,7 +33,7 @@ function App() {
           />
           <MapContainer
             countryData={countryData}
-            completReigon={completeReigon}
+            completeReigon={completeReigon}
           />
         </>
       ) : (
