@@ -12,7 +12,7 @@ export const FormWrapper = styled.form`
 `;
 
 export const Input = styled.input`
-  width: 300px;
+  width: 180px;
   outline: none;
   border: 1px solid #fdd835;
   border-radius: 4px;
@@ -25,6 +25,7 @@ export const Button = styled.button`
   border-radius: 4px;
   cursor: pointer;
   padding: 8px 8px;
+  margin-right: 5px;
   font-weight: bold;
   background-color: #fff9c4;
   border: 1px solid #fdd835;

@@ -4,11 +4,17 @@ import ModalComponent from "../components/ModalComponent";
 
 const RegionSettingContainer = ({ countryData, setCompleteRegion }) => {
   const [modal, setModal] = useState(false);
-  const [selectRegions, setSelectRegions] = useState([]);
   const [country, setCountry] = useState([]);
   const [selectCity, setSelectCity] = useState("");
+  const [selectRegions, setSelectRegions] = useState([]);
+  const [formValue, setFormValue] = useState({
+    city: "",
+    country: "",
+  });
 
   const checkBoxRef = useRef(null);
+  const inputCityRef = useRef(null);
+  const inputCountryRef = useRef(null);
 
   const onModal = (e) => {
     e.preventDefault();
@@ -18,6 +24,33 @@ const RegionSettingContainer = ({ countryData, setCompleteRegion }) => {
     setSelectCity("");
   };
 
+  //input
+  const onInputChange = (e) => {
+    setFormValue({
+      ...formValue,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onInputMouseDown = () => {
+    setSelectRegions([formValue]);
+  };
+
+  const onInputComplete = (e) => {
+    e.preventDefault();
+
+    setCompleteRegion([...selectRegions]);
+
+    //input Value 초기화
+    setFormValue({
+      city: "",
+      country: "",
+    });
+    inputCityRef.current.value = "";
+    inputCountryRef.current.value = "";
+  };
+
+  //modal
   const onAllCheck = (e) => {
     e.preventDefault();
 
@@ -102,12 +135,20 @@ const RegionSettingContainer = ({ countryData, setCompleteRegion }) => {
   const onComplete = (e) => {
     e.preventDefault();
     setModal(false);
+    console.log(selectRegions);
     setCompleteRegion([...selectRegions]);
   };
 
   return (
     <>
-      <MapTopFormComponent onClick={onModal} />
+      <MapTopFormComponent
+        onModal={onModal}
+        onInputChange={onInputChange}
+        onInputComplete={onInputComplete}
+        onInputMouseDown={onInputMouseDown}
+        inputCityRef={inputCityRef}
+        inputCountryRef={inputCountryRef}
+      />
       {modal ? (
         <ModalComponent
           checkBoxRef={checkBoxRef}
