@@ -32,13 +32,22 @@ const MapComponent = ({ detailData }) => {
       map: map,
       path: path,
       strokeWeight: 2,
-      strokeColor: "#004c80",
+      strokeColor: randomColor(),
       strokeOpacity: 0.8,
       strokeStyle: "solid",
       fillColor: "#fff",
       fillOpacity: 0.7,
     });
     polygon.setMap(map);
+  };
+
+  const randomColor = () => {
+    const r = Math.round(Math.random() * 255);
+    const g = Math.round(Math.random() * 255);
+    const b = Math.round(Math.random() * 255);
+
+    const rgb = `rgb(${r},${g},${b})`;
+    return rgb;
   };
 
   return (

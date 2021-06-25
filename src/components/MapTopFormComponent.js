@@ -29,7 +29,9 @@ const MapTopFormComponent = ({
         <Button onClick={onInputComplete} onMouseDown={onInputMouseDown}>
           검색
         </Button>
-        <Button onClick={onModal}>지역 설정</Button>
+        <Button onClick={onModal} bgWhite>
+          지역 설정
+        </Button>
       </FormWrapper>
     </>
   );
