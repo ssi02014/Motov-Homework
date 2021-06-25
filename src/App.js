@@ -1,16 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import MapContainer from "./containers/MapContainer";
 import RegionSettingContainer from "./containers/RegionSettingContainer";
-
-const Container = styled.div`
-  width: 100%;
-  height: 100vh;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-`;
+//style
+import { Wrapper } from "./style/main";
 
 function App() {
   const [countryData, setCountryData] = useState([]);
@@ -30,7 +23,7 @@ function App() {
   }, []);
 
   return (
-    <Container>
+    <Wrapper>
       {loading ? (
         <>
           <RegionSettingContainer
@@ -45,7 +38,7 @@ function App() {
       ) : (
         <h1>Loading</h1>
       )}
-    </Container>
+    </Wrapper>
   );
 }
 
