@@ -1,17 +1,18 @@
 import React from "react";
 import { cityName } from "../data/data";
+//icons
+import { BsTrash } from "react-icons/bs";
 //style
 import {
   ModalFormWrapper,
   FormTitle,
-  FormRegionTitle,
+  FormSubTitle,
   FormButton,
   SelectBoxWrapper,
   CheckBoxWrapper,
   CheckBoxLabel,
   CheckBoxInput,
   SelectCountryWrapper,
-  SelectCountrySpan,
 } from "../style/modal";
 
 const ModalComponent = ({
@@ -48,7 +49,7 @@ const ModalComponent = ({
         </SelectBoxWrapper>
         <FormButton onClick={onAllCheck}>전체 선택</FormButton>
         <FormButton onClick={onAllUnCheck}>선택 해제</FormButton>
-        <FormRegionTitle>{selectCity}</FormRegionTitle>
+        <FormSubTitle>{selectCity}</FormSubTitle>
         <CheckBoxWrapper ref={checkBoxRef} onChange={onCheckCountry}>
           {country.map((el, idx) => {
             return (
@@ -65,10 +66,14 @@ const ModalComponent = ({
             );
           })}
         </CheckBoxWrapper>
+        <FormSubTitle>선택 도시</FormSubTitle>
         <SelectCountryWrapper>
           {selectRegions.map((region, idx) => {
             return (
-              <SelectCountrySpan key={idx}>{region.country}</SelectCountrySpan>
+              <p key={idx}>
+                {region.country}
+                <BsTrash />
+              </p>
             );
           })}
         </SelectCountryWrapper>

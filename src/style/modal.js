@@ -21,7 +21,7 @@ export const FormTitle = styled.h1`
   margin-bottom: 16px;
 `;
 
-export const FormRegionTitle = styled.h3`
+export const FormSubTitle = styled.h3`
   margin: 30px 0 10px 0;
 `;
 
@@ -79,10 +79,28 @@ export const CheckBoxInput = styled.input`
 
 export const SelectCountryWrapper = styled.div`
   margin-bottom: 20px;
-`;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 
-export const SelectCountrySpan = styled.span`
-  display: inline-block;
-  width: 33%;
-  height: 30px;
+  p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5px;
+    width: 31%;
+    height: 30px;
+    margin: 0;
+    border-bottom: 1px solid #999;
+    border-right: 1px solid #999;
+
+    &:nth-child(3n - 2) {
+      border-left: 1px solid #999;
+    }
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(3) {
+      border-top: 1px solid #999;
+    }
+  }
 `;
