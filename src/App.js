@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import MapContainer from "./containers/MapContainer";
-import MapTopFormContainer from "./containers/MapTopFormContainer";
+import RegionSettingContainer from "./containers/RegionSettingContainer";
 
 const Container = styled.div`
   width: 100%;
@@ -33,7 +33,7 @@ function App() {
     <Container>
       {loading ? (
         <>
-          <MapTopFormContainer
+          <RegionSettingContainer
             countryData={countryData}
             setCompleteRegion={setCompleteRegion}
           />

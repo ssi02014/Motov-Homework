@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const { kakao } = window;
 
-const MapStyle = styled.div`
+const MapContainer = styled.div`
   width: 100%;
   height: 100%;
 `;
@@ -13,9 +13,10 @@ const MapComponent = ({ detailData }) => {
     const container = document.getElementById("myMap");
     const options = {
       center: new kakao.maps.LatLng(37.566826, 126.9786567),
-      level: 6,
+      level: 9,
     };
     const map = new kakao.maps.Map(container, options);
+
     detailData.map((el) => {
       const path = [];
       el.polygon.map((el) => {
@@ -37,14 +38,12 @@ const MapComponent = ({ detailData }) => {
       fillColor: "#fff", // 채우기 색깔입니다
       fillOpacity: 0.7, // 채우기 불투명도 입니다
     });
-    console.log(path);
-    console.log(polygon);
     polygon.setMap(map);
   };
 
   return (
     <>
-      <MapStyle id="myMap" />
+      <MapContainer id="myMap" />
     </>
   );
 };

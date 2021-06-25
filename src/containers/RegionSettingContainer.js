@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import MapTopFormComponent from "../components/MapTopFormComponent";
 import ModalComponent from "../components/ModalComponent";
 
-const MapTopFormContainer = ({ countryData, setCompleteRegion }) => {
+const RegionSettingContainer = ({ countryData, setCompleteRegion }) => {
   const [modal, setModal] = useState(false);
   const [selectRegions, setSelectRegions] = useState([]);
   const [country, setCountry] = useState([]);
@@ -116,4 +116,4 @@ const MapTopFormContainer = ({ countryData, setCompleteRegion }) => {
   );
 };
 
-export default MapTopFormContainer;
+export default RegionSettingContainer;
