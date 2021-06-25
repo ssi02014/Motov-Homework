@@ -11,7 +11,7 @@ export const ModalFormWrapper = styled.form`
   padding: 1rem;
   z-index: 10;
   background-color: #fff;
-  border: 1px solid #999;
+  border: 1px solid #fdd835;
   border-radius: 8px;
   overflow-y: auto;
 `;
@@ -39,7 +39,7 @@ export const FormButton = styled.button`
 `;
 
 export const SelectBoxWrapper = styled.select`
-  width: 150px;
+  width: 170px;
   margin-right: 20px;
   border: none;
   border-bottom: 1px solid #999;
@@ -101,6 +101,25 @@ export const SelectCountryWrapper = styled.div`
     &:nth-child(2),
     &:nth-child(3) {
       border-top: 1px solid #999;
+    }
+
+    button {
+      position: relative;
+      padding: 8px;
+      background-color: #fff;
+      border: none;
+      cursor: pointer;
+      &::after {
+        position: absolute;
+        content: "X";
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1.2rem;
+      }
+      &:hover {
+        color: #999;
+      }
     }
   }
 `;

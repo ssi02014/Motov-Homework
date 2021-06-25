@@ -1,7 +1,5 @@
 import React from "react";
 import { cityName } from "../data/data";
-//icons
-import { BsTrash } from "react-icons/bs";
 //style
 import {
   ModalFormWrapper,
@@ -23,6 +21,7 @@ const ModalComponent = ({
   onAllCheck,
   onAllUnCheck,
   onCheckCountry,
+  onRemove,
   onComplete,
   onSelectCity,
   onSelectCountry,
@@ -32,7 +31,7 @@ const ModalComponent = ({
       <ModalFormWrapper>
         <FormTitle>지역 설정</FormTitle>
         <SelectBoxWrapper onChange={onSelectCity}>
-          <option value=""> 선택</option>
+          <option value="">시 선택</option>
           {cityName.map((el, idx) => (
             <option value={el} key={idx}>
               {el}
@@ -72,7 +71,7 @@ const ModalComponent = ({
             return (
               <p key={idx}>
                 {region.country}
-                <BsTrash />
+                <button onClick={onRemove} />
               </p>
             );
           })}

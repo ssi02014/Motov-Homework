@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const { kakao } = window;
 
-const MapContainer = styled.div`
+const MapWrapper = styled.div`
   width: 100%;
   height: 100%;
 `;
@@ -13,7 +13,7 @@ const MapComponent = ({ detailData }) => {
     const container = document.getElementById("myMap");
     const options = {
       center: new kakao.maps.LatLng(37.566826, 126.9786567),
-      level: 9,
+      level: 10,
     };
     const map = new kakao.maps.Map(container, options);
 
@@ -30,20 +30,20 @@ const MapComponent = ({ detailData }) => {
   const dispalyArea = (path, map) => {
     let polygon = new kakao.maps.Polygon({
       map: map,
-      path: path, // 그려질 다각형의 좌표 배열입니다
-      strokeWeight: 2, // 선의 두께입니다
-      strokeColor: "#004c80", // 선의 색깔입니다
-      strokeOpacity: 0.8, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-      strokeStyle: "solid", // 선의 스타일입니다
-      fillColor: "#fff", // 채우기 색깔입니다
-      fillOpacity: 0.7, // 채우기 불투명도 입니다
+      path: path,
+      strokeWeight: 2,
+      strokeColor: "#004c80",
+      strokeOpacity: 0.8,
+      strokeStyle: "solid",
+      fillColor: "#fff",
+      fillOpacity: 0.7,
     });
     polygon.setMap(map);
   };
 
   return (
     <>
-      <MapContainer id="myMap" />
+      <MapWrapper id="myMap" />
     </>
   );
 };

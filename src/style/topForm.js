@@ -14,7 +14,7 @@ export const FormWrapper = styled.form`
 export const Input = styled.input`
   width: 300px;
   outline: none;
-  border: 1px solid #999;
+  border: 1px solid #fdd835;
   border-radius: 4px;
   margin-right: 5px;
   padding: 10px 8px;
@@ -26,8 +26,10 @@ export const Button = styled.button`
   cursor: pointer;
   padding: 8px 8px;
   font-weight: bold;
+  background-color: #fff9c4;
+  border: 1px solid #fdd835;
 
   &:hover {
-    background-color: #dadada;
+    background-color: #ffee58;
   }
 `;
