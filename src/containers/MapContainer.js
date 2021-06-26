@@ -12,7 +12,7 @@ const MapContainer = ({ allRegionData, completeReigon }) => {
         if (el.city === regionData.city && el.country === regionData.country) {
           const data = {
             city: regionData.city,
-            country: regionData.countr,
+            country: regionData.country,
             polygon: regionData.polygon
               .join("")
               .split("_")
@@ -24,10 +24,9 @@ const MapContainer = ({ allRegionData, completeReigon }) => {
     });
   }, [completeReigon]);
 
-  const dispalyArea = (path, map) => {
+  const dispalyArea = (transformData, map, customOverlay, infowindow) => {
     let polygon = new kakao.maps.Polygon({
-      map: map,
-      path: path,
+      path: transformData.path,
       strokeWeight: 2,
       strokeColor: randomColor(),
       strokeOpacity: 0.8,
@@ -35,6 +34,34 @@ const MapContainer = ({ allRegionData, completeReigon }) => {
       fillColor: "#fff",
       fillOpacity: 0.7,
     });
+
+    kakao.maps.event.addListener(polygon, "mouseover", () => {
+      polygon.setOptions({ fillColor: "#09f" });
+      customOverlay.setMap(map);
+    });
+
+    kakao.maps.event.addListener(polygon, "mouseout", () => {
+      polygon.setOptions({ fillColor: "#fff" });
+      customOverlay.setMap(null);
+    });
+
+    kakao.maps.event.addListener(polygon, "click", (e) => {
+      const content = `
+        <div class="info">
+          <div class="title">
+            ${transformData.city} ${transformData.country}
+          </div>
+          <div class="size">
+            총 면적: ${Math.floor(polygon.getArea())}m<sup>2</sup>
+          </div>
+        </div>
+      `;
+
+      infowindow.setContent(content);
+      infowindow.setPosition(e.latLng);
+      infowindow.setMap(map);
+    });
+
     polygon.setMap(map);
   };
 
