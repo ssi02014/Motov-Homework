@@ -1,5 +1,5 @@
 import React from "react";
-import { cityName } from "../data/data";
+
 //style
 import {
   ModalFormWrapper,
@@ -15,6 +15,7 @@ import {
 
 const ModalComponent = ({
   checkBoxRef,
+  selectOptionCity,
   selectOptionCountry,
   selectCity,
   selectRegions,
@@ -27,15 +28,16 @@ const ModalComponent = ({
   onSelectCity,
   onSelectCountry,
 }) => {
+  console.log(selectOptionCity);
   return (
     <>
       <ModalFormWrapper>
         <FormTitle>지역 설정</FormTitle>
         <SelectBoxWrapper onChange={onSelectCity}>
           <option value="">시 선택</option>
-          {cityName.map((el, idx) => (
-            <option value={el} key={idx}>
-              {el}
+          {selectOptionCity.map((city, idx) => (
+            <option value={city} key={idx}>
+              {city}
             </option>
           ))}
         </SelectBoxWrapper>
@@ -80,9 +82,7 @@ const ModalComponent = ({
                 );
               })}
             </SelectCountryWrapper>
-            <FormButton onClick={onComplete} bgWhite>
-              지역 설정 완료
-            </FormButton>
+            <FormButton onClick={onComplete}>지역 설정 완료</FormButton>
           </>
         ) : (
           <></>
