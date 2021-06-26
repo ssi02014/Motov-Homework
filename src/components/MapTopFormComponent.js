@@ -1,5 +1,10 @@
 import React from "react";
+//style
 import { FormWrapper, Input, Button } from "../style/topForm";
+//icon
+import { BiSearch } from "react-icons/bi";
+//logo
+import logo from "../image/logo.png";
 
 const MapTopFormComponent = ({
   inputCityRef,
@@ -12,6 +17,7 @@ const MapTopFormComponent = ({
   return (
     <>
       <FormWrapper>
+        <img src={logo} alt="" />
         <Input
           type="text"
           name="city"
@@ -27,7 +33,7 @@ const MapTopFormComponent = ({
           ref={inputCountryRef}
         />
         <Button onClick={onInputComplete} onMouseDown={onInputMouseDown}>
-          검색
+          <BiSearch />
         </Button>
         <Button onClick={onModal} bgWhite>
           지역 설정

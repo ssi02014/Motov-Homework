@@ -11,40 +11,50 @@ export const ModalFormWrapper = styled.form`
   padding: 1rem;
   z-index: 10;
   background-color: #fff;
-  border: 1px solid #fdd835;
+  border: 1px solid #01727c;
   border-radius: 8px;
   overflow-y: auto;
+  box-shadow: 5px 5px 5px gray;
 `;
 
 export const FormTitle = styled.h1`
+  font-family: "Nanum Gothic", sans-serif;
   margin-top: 0;
   margin-bottom: 16px;
 `;
 
 export const FormSubTitle = styled.h3`
+  font-family: "Nanum Gothic", sans-serif;
   margin: 30px 0 10px 0;
 `;
 
 export const FormButton = styled.button`
-  margin-right: 20px;
-  height: 30px;
+  font-family: "Nanum Gothic", sans-serif;
+  margin-right: 10px;
+  padding: 7px 10px;
   outline: none;
-  border: 1px solid #999;
+  border: 1px solid #01727c;
   border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  background-color: ${(props) => (props.bgWhite ? "#fff" : "#01a4b3")};
+  color: ${(props) => (props.bgWhite ? "#00000" : "#fff")};
   cursor: pointer;
 
   &:hover {
-    background-color: #dadada;
+    background-color: ${(props) => (props.bgWhite ? "#e4fbfd" : "#008e9f")};
   }
 `;
 
 export const SelectBoxWrapper = styled.select`
+  font-family: "Nanum Gothic", sans-serif;
   width: 170px;
   margin-right: 20px;
   border: none;
   border-bottom: 1px solid #999;
   outline: none;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  padding: 0 0 3px 0;
 `;
 
 export const CheckBoxWrapper = styled.div`

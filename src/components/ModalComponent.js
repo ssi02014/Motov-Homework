@@ -18,6 +18,7 @@ const ModalComponent = ({
   selectOptionCountry,
   selectCity,
   selectRegions,
+  setModal,
   onAllCheck,
   onAllUnCheck,
   onCheckCountry,
@@ -47,7 +48,9 @@ const ModalComponent = ({
           ))}
         </SelectBoxWrapper>
         <FormButton onClick={onAllCheck}>전체 선택</FormButton>
-        <FormButton onClick={onAllUnCheck}>선택 해제</FormButton>
+        <FormButton onClick={onAllUnCheck} bgWhite>
+          선택 해제
+        </FormButton>
         <FormSubTitle>{selectCity}</FormSubTitle>
         <CheckBoxWrapper ref={checkBoxRef} onChange={onCheckCountry}>
           {selectOptionCountry.map((el, idx) => {
@@ -64,18 +67,29 @@ const ModalComponent = ({
             );
           })}
         </CheckBoxWrapper>
-        <FormSubTitle>선택 도시</FormSubTitle>
-        <SelectCountryWrapper>
-          {selectRegions.map((region, idx) => {
-            return (
-              <p key={idx}>
-                {region.country}
-                <button onClick={onRemove} />
-              </p>
-            );
-          })}
-        </SelectCountryWrapper>
-        <FormButton onClick={onComplete}>지역 설정 완료</FormButton>
+        {selectRegions.length ? (
+          <>
+            <FormSubTitle>선택 도시</FormSubTitle>
+            <SelectCountryWrapper>
+              {selectRegions.map((region, idx) => {
+                return (
+                  <p key={idx}>
+                    {region.country}
+                    <button onClick={onRemove} />
+                  </p>
+                );
+              })}
+            </SelectCountryWrapper>
+            <FormButton onClick={onComplete} bgWhite>
+              지역 설정 완료
+            </FormButton>
+          </>
+        ) : (
+          <></>
+        )}
+        <FormButton onClick={() => setModal(false)} bgWhite>
+          취소
+        </FormButton>
       </ModalFormWrapper>
     </>
   );
