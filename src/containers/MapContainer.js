@@ -3,17 +3,17 @@ import MapComponent from "../components/MapComponent";
 
 const { kakao } = window;
 
-const MapContainer = ({ countryData, completeReigon }) => {
+const MapContainer = ({ allRegionData, completeReigon }) => {
   const [detailData, setDetailData] = useState([]);
 
   useEffect(() => {
-    countryData.forEach((map) => {
+    allRegionData.forEach((regionData) => {
       completeReigon.forEach((el) => {
-        if (el.city === map.city && el.country === map.country) {
+        if (el.city === regionData.city && el.country === regionData.country) {
           const data = {
-            city: map.city,
-            country: map.countr,
-            polygon: map.polygon
+            city: regionData.city,
+            country: regionData.countr,
+            polygon: regionData.polygon
               .join("")
               .split("_")
               .map((el) => el.split(",")),
