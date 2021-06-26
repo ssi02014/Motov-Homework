@@ -90,7 +90,6 @@ const RegionSettingContainer = ({ allRegionData, setCompleteRegion }) => {
   // Modal Functions
   const onAllCheck = (e) => {
     e.preventDefault();
-
     setSelectRegions([]);
 
     checkBoxRef.current.childNodes.forEach((el) => {
