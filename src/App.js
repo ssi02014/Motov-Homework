@@ -10,17 +10,14 @@ function App() {
   const [completeReigon, setCompleteRegion] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const API_URL = `https://motov-coding-homework.s3.ap-northeast-2.amazonaws.com/country.json`;
+
   useEffect(() => {
     setLoading(false);
-    axios
-      .get(
-        `https://motov-coding-homework.s3.ap-northeast-2.amazonaws.com/country.json`
-      )
-      .then((res) => {
-        // setCountryData((prev) => [...prev, res.data]);
-        setAllRegionData(res.data.maps);
-        setLoading(true);
-      });
+    axios.get(API_URL).then((res) => {
+      setAllRegionData(res.data.maps);
+      setLoading(true);
+    });
   }, []);
 
   return (

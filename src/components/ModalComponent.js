@@ -28,7 +28,6 @@ const ModalComponent = ({
   onSelectCity,
   onSelectCountry,
 }) => {
-  console.log(selectOptionCity);
   return (
     <>
       <ModalFormWrapper>
