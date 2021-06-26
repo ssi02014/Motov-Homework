@@ -181,6 +181,7 @@ const RegionSettingContainer = ({ countryData, setCompleteRegion }) => {
           selectOptionCountry={selectOptionCountry}
           selectCity={selectCity}
           selectRegions={selectRegions}
+          setModal={setModal}
           onAllCheck={onAllCheck}
           onAllUnCheck={onAllUnCheck}
           onCheckCountry={onCheckCountry}
