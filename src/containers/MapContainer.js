@@ -25,7 +25,7 @@ const MapContainer = ({ allRegionData, completeReigon }) => {
   }, [completeReigon]);
 
   const dispalyArea = (transformData, map, customOverlay, infowindow) => {
-    let polygon = new kakao.maps.Polygon({
+    const polygon = new kakao.maps.Polygon({
       path: transformData.path,
       strokeWeight: 2,
       strokeColor: randomColor(),
