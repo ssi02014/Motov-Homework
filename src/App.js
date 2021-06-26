@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import LoadingComponent from "./components/LoadingComponent";
 import MapContainer from "./containers/MapContainer";
 import RegionSettingContainer from "./containers/RegionSettingContainer";
 //style
@@ -34,7 +35,7 @@ function App() {
           />
         </>
       ) : (
-        <h1>Loading</h1>
+        <LoadingComponent />
       )}
     </Wrapper>
   );

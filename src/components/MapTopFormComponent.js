@@ -17,7 +17,7 @@ const MapTopFormComponent = ({
   return (
     <>
       <FormWrapper>
-        <img src={logo} alt="" />
+        <img src={logo} alt="logo" />
         <Input
           type="text"
           name="city"
