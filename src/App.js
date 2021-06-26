@@ -5,6 +5,7 @@ import MapContainer from "./containers/MapContainer";
 import RegionSettingContainer from "./containers/RegionSettingContainer";
 //style
 import { Wrapper } from "./style/main";
+import "./App.css";
 
 function App() {
   const [allRegionData, setAllRegionData] = useState([]);

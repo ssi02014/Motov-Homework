@@ -2,9 +2,7 @@ import styled from "styled-components";
 
 export const FormWrapper = styled.form`
   position: fixed;
-  left: 3%;
-  /* left: 50%; */
-  /* transform: translateX(-50%); */
+  left: 10px;
   z-index: 10;
   margin-top: 10px;
   display: flex;
