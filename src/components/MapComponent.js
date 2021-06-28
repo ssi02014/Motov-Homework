@@ -1,32 +1,48 @@
 import React, { useEffect } from "react";
-import styled from "styled-components";
+import { MapWrapper } from "../style/map";
 
-const { kakao } = window;
-
-const MapStyle = styled.div`
-  width: 100%;
-  height: 100%;
-`;
-
-const MapComponent = () => {
+const MapComponent = ({ detailData, dispalyArea, kakao }) => {
   useEffect(() => {
+    //kakao map 생성
     const container = document.getElementById("myMap");
     const options = {
-      center: new kakao.maps.LatLng(33.450701, 126.570667),
-      level: 3,
+      center: new kakao.maps.LatLng(37.566826, 126.9786567),
+      level: 11,
     };
     const map = new kakao.maps.Map(container, options);
+    const customOverlay = new kakao.maps.CustomOverlay({});
+    const infowindow = new kakao.maps.InfoWindow({ removable: true });
 
-    const markerPosition = new kakao.maps.LatLng(33.450701, 126.570667);
-    const marker = new kakao.maps.Marker({
-      position: markerPosition,
+    const mapTypeControl = new kakao.maps.MapTypeControl();
+    const zoomControl = new kakao.maps.ZoomControl();
+
+    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+    detailData.forEach((data) => {
+      let transformData = {
+        city: data.city,
+        country: data.country,
+        path: [],
+      };
+
+      data.polygon.forEach((latAndLng) => {
+        transformData = {
+          ...transformData,
+          path: [
+            ...transformData.path,
+            new kakao.maps.LatLng(latAndLng[1], latAndLng[0]),
+          ],
+        };
+      });
+
+      dispalyArea(transformData, map, customOverlay, infowindow);
     });
-    marker.setMap(map);
-  }, []);
+  }, [detailData]);
 
   return (
     <>
-      <MapStyle id="myMap" />
+      <MapWrapper id="myMap" />
     </>
   );
 };

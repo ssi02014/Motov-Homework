@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+# 💻 Motov-HomeWork
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 전민재의 Motov-HomeWork 저장소입니다. 😁
 
-## Available Scripts
+<br />
 
-In the project directory, you can run:
+## 🎥 실제 화면
 
-### `yarn start`
+### 1. Main Page
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![4](https://user-images.githubusercontent.com/64779472/123552226-3185cb80-d7b0-11eb-8aa9-92c4b3cfedba.png)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 2. Loading Page
 
-### `yarn test`
+![6](https://user-images.githubusercontent.com/64779472/123552269-5e39e300-d7b0-11eb-9fe0-35d3b915196f.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br />
 
-### `yarn build`
+## 📁 Map API
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [KAKAO Map API](https://apis.map.kakao.com/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<br>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🔖 기술스택 및 주요 라이브러리
 
-### `yarn eject`
+- React
+- React Hooks
+- axios
+- styled-components
+- react-icons
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<br />
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📝 Projects Board
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![2](https://user-images.githubusercontent.com/64779472/123551453-cdadd380-d7ac-11eb-9280-c1aa0c23eb09.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<br />
 
-## Learn More
+## 📝 Git Flow
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **master**
+  - 메인 브랜치
+  - 배포용 브랜치
+- **develop**
+  - 최종 개발 브랜치
+  - 각 기능 브랜치들이 하나로 병합되는 지점
+- **feature**
+  - 기능 개발 브랜치
+  - 실제 브랜치명은 각 구현 기능명
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<br />
 
-### Code Splitting
+## 📝 Commit Message
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Add: 특정 기능을 하는 코드를 구현 했을 때
+- Modify: 이미 구현 된 기능의 코드를 수정하는데, 기능의 향상이 이루어졌을 때
+- Design: CSS와 같은 스타일링을 했을 때
+- Refactor: 리팩토링을 진행했을 때
+- Rename: 폴더 및 파일 명을 변경했을 때
+- Remove: 필요 없는 코드 및 파일을 제거했을 때
+- Docs: README.md와 같은 단순 문서 작업
 
-### Analyzing the Bundle Size
+<br />
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 👨🏻‍💻 기능 구현
 
-### Making a Progressive Web App
+- 외부 데이터[https://motov-coding-homework.s3.ap-northeast-2.amazonaws.com/country.json] 불러오기
+- 검색 한 지역 폴리곤 생성
+- Input을 통한 지역 검색 구현 (유효성 검사 포함)
+- Modal을 통한 지역 검색 구현
+  - 전체 체크, 전체 체크 해제
+  - selectBox를 통한 지역 검색
+  - checkBox를 통한 지역 검색
+- 지도/스카이뷰 구현
+- 최초 렌더링 시 로딩 화면 구현
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<br />
