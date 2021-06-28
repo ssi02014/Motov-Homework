@@ -6,8 +6,9 @@
 
 ## 🎥 배포 및 데모 영상
 
-- URL: [Motov Homework - JeonMinjae](http://3.36.209.232/)
+- URL: [Motov Homework - JeonMinjae](http://www.jeonminjae.com/)
   - `AWS EC2`와 `Nginx`를 통한 배포 작업 진행
+  - `Domain`(http://www.jeonminjae.com/) 적용
 - 데모 영상: https://www.youtube.com/watch?v=metdX6GXE6Q
 
 <br />
