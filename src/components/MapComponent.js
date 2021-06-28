@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+//style
 import { MapWrapper } from "../style/map";
 
 const MapComponent = ({ detailData, dispalyArea, kakao }) => {

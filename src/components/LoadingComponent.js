@@ -1,4 +1,5 @@
 import React from "react";
+//style
 import { Wrapper, Loader, LoadingTitle } from "../style/loading";
 
 const LoadingComponent = () => {
