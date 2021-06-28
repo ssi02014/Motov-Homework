@@ -4,7 +4,14 @@
 
 <br />
 
-## 🎥 실제 화면
+## 🎥 배포 및 실제 화면
+
+### URL: [Motov Homework - JeonMinjae](http://3.36.209.232/)
+
+- AWS EC2
+- Nginx
+
+<br />
 
 ### 1. Main Page
 
@@ -49,6 +56,8 @@
 - **feature**
   - 기능 개발 브랜치
   - 실제 브랜치명은 각 구현 기능명
+- **hotfix**
+  - 에러 수정용 브랜치
 
 <br />
 
@@ -58,6 +67,7 @@
 - Modify: 이미 구현 된 기능의 코드를 수정하는데, 기능의 향상이 이루어졌을 때
 - Design: CSS와 같은 스타일링을 했을 때
 - Refactor: 리팩토링을 진행했을 때
+- Fix: 버그 픽스나 핫 픽스 이슈를 완료하였을 때
 - Rename: 폴더 및 파일 명을 변경했을 때
 - Remove: 필요 없는 코드 및 파일을 제거했을 때
 - Docs: README.md와 같은 단순 문서 작업
@@ -68,7 +78,7 @@
 
 - 외부 데이터[https://motov-coding-homework.s3.ap-northeast-2.amazonaws.com/country.json] 불러오기
 - 검색 한 지역 폴리곤 생성
-- Input을 통한 지역 검색 구현 (유효성 검사 포함)
+- Inputs을 통한 지역 검색 구현 (Input 유효성 검사 포함)
 - Modal을 통한 지역 검색 구현
   - 전체 체크, 전체 체크 해제
   - selectBox를 통한 지역 검색

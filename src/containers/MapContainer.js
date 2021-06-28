@@ -51,12 +51,13 @@ const MapContainer = ({ allRegionData, completeReigon }) => {
 
         if (getArea.length < 8) getArea = `${getArea[0]}백만`;
         else if (getArea.length < 9) getArea = `${getArea[0]}천만`;
-        else getArea = `${getArea[0]}억`;
+        else if (getArea.length < 10) getArea = `${getArea[0]}억`;
+        else getArea = `${getArea.substr(0, 2)}억`;
 
         const content = `
           <div class="info">
             <div class="title">
-              ${transformData.city} ${transformData.country}
+              ${transformData.country}
             </div>
             <div class="size">
               총 면적: 약 ${getArea}m<sup>2</sup>
