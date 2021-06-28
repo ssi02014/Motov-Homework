@@ -8,8 +8,7 @@
 
 ### URL: [Motov Homework - JeonMinjae](http://3.36.209.232/)
 
-- AWS EC2
-- Nginx
+- `AWS EC2`와 `Nginx`를 통한 배포 작업 진행
 
 <br />
 
@@ -77,13 +76,24 @@
 ## 👨🏻‍💻 기능 구현
 
 - 외부 데이터[https://motov-coding-homework.s3.ap-northeast-2.amazonaws.com/country.json] 불러오기
-- 검색 한 지역 폴리곤 생성
-- Inputs을 통한 지역 검색 구현 (Input 유효성 검사 포함)
+- 검색 한 지역 Polygon을 생성
+- Input을 통한 지역 검색 구현 (Input 유효성 검사 포함)
 - Modal을 통한 지역 검색 구현
   - 전체 체크, 전체 체크 해제
   - selectBox를 통한 지역 검색
   - checkBox를 통한 지역 검색
+  - 선택된 Country `X`버튼을 통한 제거
 - 지도/스카이뷰 구현
+- Map Event 구현
+  - Mouseover 시에 해당 영역 색깔 변경
+  - Click 시에 영역 Country 이름과 면적 출력
 - 최초 렌더링 시 로딩 화면 구현
+
+<br />
+
+## 해결하지 못한 이슈😥
+
+1. Polygon을 생성할 때마다 map이 계속 생성 되는데, 한번만 생성되게 구현
+2. Polygon이 생성했을 때 영역이 깨지는 지역이 있음
 
 <br />
