@@ -48,6 +48,7 @@ export const Button = styled.button`
     font-size: 1.1rem;
     color: #fff;
   }
+
   &:hover {
     background-color: ${(props) => (props.bgWhite ? "#e4fbfd" : "#008e9f")};
   }

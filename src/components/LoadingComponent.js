@@ -10,7 +10,7 @@ const LoadingComponent = () => {
       </LoadingTitle>
       <Loader></Loader>
       <p>
-        지도 데이터를 불러오는 중입니다. <br />
+        지역 데이터를 불러오는 중입니다. <br />
         잠시만 기다려주시기 바랍니다.
       </p>
     </Wrapper>

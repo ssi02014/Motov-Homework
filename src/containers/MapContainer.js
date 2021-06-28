@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import MapComponent from "../components/MapComponent";
 
 const { kakao } = window;
@@ -22,31 +22,32 @@ const MapContainer = ({ allRegionData, completeReigon }) => {
         }
       });
     });
-  }, [completeReigon]);
+  }, [allRegionData, completeReigon]);
 
-  const dispalyArea = (transformData, map, customOverlay, infowindow) => {
-    const polygon = new kakao.maps.Polygon({
-      path: transformData.path,
-      strokeWeight: 2,
-      strokeColor: randomColor(),
-      strokeOpacity: 0.8,
-      strokeStyle: "solid",
-      fillColor: "#fff",
-      fillOpacity: 0.7,
-    });
+  const dispalyArea = useCallback(
+    (transformData, map, customOverlay, infowindow) => {
+      const polygon = new kakao.maps.Polygon({
+        path: transformData.path,
+        strokeWeight: 3,
+        strokeColor: "#008e9f",
+        strokeOpacity: 0.8,
+        strokeStyle: "solid",
+        fillColor: "#fff",
+        fillOpacity: 0.6,
+      });
 
-    kakao.maps.event.addListener(polygon, "mouseover", () => {
-      polygon.setOptions({ fillColor: "#09f" });
-      customOverlay.setMap(map);
-    });
+      kakao.maps.event.addListener(polygon, "mouseover", (e) => {
+        polygon.setOptions({ fillColor: "#09f" });
+        customOverlay.setMap(map);
+      });
 
-    kakao.maps.event.addListener(polygon, "mouseout", () => {
-      polygon.setOptions({ fillColor: "#fff" });
-      customOverlay.setMap(null);
-    });
+      kakao.maps.event.addListener(polygon, "mouseout", () => {
+        polygon.setOptions({ fillColor: "#fff" });
+        customOverlay.setMap(null);
+      });
 
-    kakao.maps.event.addListener(polygon, "click", (e) => {
-      const content = `
+      kakao.maps.event.addListener(polygon, "click", (e) => {
+        const content = `
         <div class="info">
           <div class="title">
             ${transformData.city} ${transformData.country}
@@ -57,22 +58,15 @@ const MapContainer = ({ allRegionData, completeReigon }) => {
         </div>
       `;
 
-      infowindow.setContent(content);
-      infowindow.setPosition(e.latLng);
-      infowindow.setMap(map);
-    });
+        infowindow.setContent(content);
+        infowindow.setPosition(e.latLng);
+        infowindow.setMap(map);
+      });
 
-    polygon.setMap(map);
-  };
-
-  const randomColor = () => {
-    const r = Math.round(Math.random() * 255);
-    const g = Math.round(Math.random() * 255);
-    const b = Math.round(Math.random() * 255);
-
-    const rgb = `rgb(${r},${g},${b})`;
-    return rgb;
-  };
+      polygon.setMap(map);
+    },
+    []
+  );
 
   return (
     <>
