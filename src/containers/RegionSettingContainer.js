@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import MapTopFormComponent from "../components/MapTopFormComponent";
 import ModalComponent from "../components/ModalComponent";
 
@@ -24,45 +24,54 @@ const RegionSettingContainer = ({ allRegionData, setCompleteRegion }) => {
       citySet.add(regionData.city);
     });
     setSelectOptionCity([...Array.from(citySet)]);
-  }, []);
+  }, [allRegionData]);
 
   // Modal ON/OFF
-  const onModal = (e) => {
-    e.preventDefault();
-    setModal(true);
-    setSelectOptionCountry([]);
-    setSelectRegions([]);
-    setSelectCity("");
-  };
+  const onModal = useCallback(
+    (e) => {
+      e.preventDefault();
+      setModal(!modal);
+      setSelectOptionCountry([]);
+      setSelectRegions([]);
+      setSelectCity("");
+    },
+    [modal]
+  );
 
   // Input Functions
-  const onInputChange = (e) => {
-    setFormValue({
-      ...formValue,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const onInputChange = useCallback(
+    (e) => {
+      setFormValue({
+        ...formValue,
+        [e.target.name]: e.target.value,
+      });
+    },
+    [formValue]
+  );
 
   const onInputMouseDown = () => {
     onValidation();
   };
 
-  const onInputComplete = (e) => {
-    e.preventDefault();
+  const onInputComplete = useCallback(
+    (e) => {
+      e.preventDefault();
 
-    setCompleteRegion([...selectRegions]);
+      setCompleteRegion([...selectRegions]);
 
-    // Input Value 초기화
-    inputCityRef.current.value = "";
-    inputCountryRef.current.value = "";
-    setFormValue({
-      city: "",
-      country: "",
-    });
-  };
+      // Input Value 초기화
+      inputCityRef.current.value = "";
+      inputCountryRef.current.value = "";
+      setFormValue({
+        city: "",
+        country: "",
+      });
+    },
+    [setCompleteRegion, selectRegions]
+  );
 
   // Input 유효성 검사
-  const onValidation = () => {
+  const onValidation = useCallback(() => {
     const { city, country } = formValue;
 
     const citySet = new Set();
@@ -85,52 +94,15 @@ const RegionSettingContainer = ({ allRegionData, setCompleteRegion }) => {
     } else {
       setSelectRegions([formValue]);
     }
-  };
+  }, [formValue, allRegionData]);
 
   // Modal Functions
-  const onAllCheck = (e) => {
-    e.preventDefault();
-    setSelectRegions([]);
-
-    checkBoxRef.current.childNodes.forEach((el) => {
-      const data = {
-        city: selectCity,
-        country: el.childNodes[0].value,
-      };
-
-      el.childNodes[0].checked = true;
-      setSelectRegions((prev) => [...prev, data]);
-    });
-  };
-
-  const onAllUnCheck = (e) => {
-    e.preventDefault();
-
-    checkBoxRef.current.childNodes.forEach((el) => {
-      el.childNodes[0].checked = false;
+  const onAllCheck = useCallback(
+    (e) => {
+      e.preventDefault();
       setSelectRegions([]);
-    });
-  };
 
-  const onSelectCity = (e) => {
-    setSelectCity(e.target.value);
-    setSelectOptionCountry([]);
-
-    checkBoxRef.current.childNodes.forEach((el) => {
-      el.childNodes[0].checked = false;
-      setSelectRegions([]);
-    });
-
-    allRegionData.forEach((el) => {
-      if (el.city === e.target.value) {
-        setSelectOptionCountry((prev) => [...prev, el.country]);
-      }
-    });
-  };
-
-  const onSelectCountry = (e) => {
-    checkBoxRef.current.childNodes.forEach((el) => {
-      if (e.target.value === el.childNodes[0].value) {
+      checkBoxRef.current.childNodes.forEach((el) => {
         const data = {
           city: selectCity,
           country: el.childNodes[0].value,
@@ -138,44 +110,99 @@ const RegionSettingContainer = ({ allRegionData, setCompleteRegion }) => {
 
         el.childNodes[0].checked = true;
         setSelectRegions((prev) => [...prev, data]);
-      }
-    });
-  };
+      });
+    },
+    [selectCity]
+  );
 
-  const onCheckCountry = (e) => {
-    if (e.target.checked) {
-      const data = {
-        city: selectCity,
-        country: e.target.value,
-      };
-
-      setSelectRegions((prev) => [...prev, data]);
-    } else {
-      setSelectRegions(
-        selectRegions.filter((el) => el.country !== e.target.value)
-      );
-    }
-  };
-
-  const onRemove = (e) => {
+  const onAllUnCheck = useCallback((e) => {
     e.preventDefault();
-
-    const innerText = e.target.parentNode.innerText;
 
     checkBoxRef.current.childNodes.forEach((el) => {
-      if (innerText === el.childNodes[0].value) {
-        el.childNodes[0].checked = false;
-      }
+      el.childNodes[0].checked = false;
+      setSelectRegions([]);
     });
-    setSelectRegions(selectRegions.filter((el) => el.country !== innerText));
-  };
+  }, []);
 
-  const onComplete = (e) => {
-    e.preventDefault();
+  const onSelectCity = useCallback(
+    (e) => {
+      setSelectCity(e.target.value);
+      setSelectOptionCountry([]);
 
-    setModal(false);
-    setCompleteRegion([...selectRegions]);
-  };
+      checkBoxRef.current.childNodes.forEach((el) => {
+        el.childNodes[0].checked = false;
+        setSelectRegions([]);
+      });
+
+      allRegionData.forEach((el) => {
+        if (el.city === e.target.value) {
+          setSelectOptionCountry((prev) => [...prev, el.country]);
+        }
+      });
+    },
+    [allRegionData]
+  );
+
+  const onSelectCountry = useCallback(
+    (e) => {
+      checkBoxRef.current.childNodes.forEach((el) => {
+        if (e.target.value === el.childNodes[0].value) {
+          const data = {
+            city: selectCity,
+            country: el.childNodes[0].value,
+          };
+
+          el.childNodes[0].checked = true;
+          setSelectRegions((prev) => [...prev, data]);
+        }
+      });
+    },
+    [selectCity]
+  );
+
+  const onCheckCountry = useCallback(
+    (e) => {
+      if (e.target.checked) {
+        const data = {
+          city: selectCity,
+          country: e.target.value,
+        };
+
+        setSelectRegions((prev) => [...prev, data]);
+      } else {
+        setSelectRegions(
+          selectRegions.filter((el) => el.country !== e.target.value)
+        );
+      }
+    },
+    [selectCity, selectRegions]
+  );
+
+  const onRemove = useCallback(
+    (e) => {
+      e.preventDefault();
+
+      const innerText = e.target.parentNode.innerText;
+
+      checkBoxRef.current.childNodes.forEach((el) => {
+        if (innerText === el.childNodes[0].value) {
+          el.childNodes[0].checked = false;
+        }
+      });
+      setSelectRegions(selectRegions.filter((el) => el.country !== innerText));
+    },
+    [selectRegions]
+  );
+
+  const onComplete = useCallback(
+    (e) => {
+      e.preventDefault();
+
+      setModal(false);
+      setCompleteRegion([...selectRegions]);
+    },
+    [selectRegions, setCompleteRegion]
+  );
 
   return (
     <>
