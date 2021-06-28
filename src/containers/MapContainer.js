@@ -47,16 +47,22 @@ const MapContainer = ({ allRegionData, completeReigon }) => {
       });
 
       kakao.maps.event.addListener(polygon, "click", (e) => {
+        let getArea = new String(Math.floor(polygon.getArea()));
+
+        if (getArea.length < 8) getArea = `${getArea[0]}백만`;
+        else if (getArea.length < 9) getArea = `${getArea[0]}천만`;
+        else getArea = `${getArea[0]}억`;
+
         const content = `
-        <div class="info">
-          <div class="title">
-            ${transformData.city} ${transformData.country}
+          <div class="info">
+            <div class="title">
+              ${transformData.city} ${transformData.country}
+            </div>
+            <div class="size">
+              총 면적: 약 ${getArea}m<sup>2</sup>
+            </div>
           </div>
-          <div class="size">
-            총 면적: ${Math.floor(polygon.getArea())}m<sup>2</sup>
-          </div>
-        </div>
-      `;
+        `;
 
         infowindow.setContent(content);
         infowindow.setPosition(e.latLng);
