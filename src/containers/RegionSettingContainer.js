@@ -134,9 +134,9 @@ const RegionSettingContainer = ({ allRegionData, setCompleteRegion }) => {
         setSelectRegions([]);
       });
 
-      allRegionData.forEach((el) => {
-        if (el.city === e.target.value) {
-          setSelectOptionCountry((prev) => [...prev, el.country]);
+      allRegionData.forEach((regionData) => {
+        if (regionData.city === e.target.value) {
+          setSelectOptionCountry((prev) => [...prev, regionData.country]);
         }
       });
     },
