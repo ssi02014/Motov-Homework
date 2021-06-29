@@ -77,9 +77,9 @@ const RegionSettingContainer = ({ allRegionData, setCompleteRegion }) => {
     const citySet = new Set();
     const countrySet = new Set();
 
-    allRegionData.forEach((data) => {
-      if (city === data.city) countrySet.add(data.country);
-      citySet.add(data.city);
+    allRegionData.forEach((regionData) => {
+      if (city === regionData.city) countrySet.add(regionData.country);
+      citySet.add(regionData.city);
     });
 
     const cityList = Array.from(citySet);
@@ -134,9 +134,9 @@ const RegionSettingContainer = ({ allRegionData, setCompleteRegion }) => {
         setSelectRegions([]);
       });
 
-      allRegionData.forEach((el) => {
-        if (el.city === e.target.value) {
-          setSelectOptionCountry((prev) => [...prev, el.country]);
+      allRegionData.forEach((regionData) => {
+        if (regionData.city === e.target.value) {
+          setSelectOptionCountry((prev) => [...prev, regionData.country]);
         }
       });
     },
@@ -224,9 +224,9 @@ const RegionSettingContainer = ({ allRegionData, setCompleteRegion }) => {
           setModal={setModal}
           onAllCheck={onAllCheck}
           onAllUnCheck={onAllUnCheck}
-          onCheckCountry={onCheckCountry}
           onSelectCity={onSelectCity}
           onSelectCountry={onSelectCountry}
+          onCheckCountry={onCheckCountry}
           onRemove={onRemove}
           onComplete={onComplete}
         />
