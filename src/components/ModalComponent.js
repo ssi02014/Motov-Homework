@@ -32,6 +32,7 @@ const ModalComponent = ({
     <>
       <ModalFormWrapper>
         <FormTitle>지역 설정</FormTitle>
+
         <SelectBoxWrapper onChange={onSelectCity}>
           <option value="">시 선택</option>
           {selectOptionCity.map((city, idx) => (
@@ -40,6 +41,7 @@ const ModalComponent = ({
             </option>
           ))}
         </SelectBoxWrapper>
+
         <SelectBoxWrapper onChange={onSelectCountry}>
           <option value="">구 선택</option>
           {selectOptionCountry.map((el, idx) => (
@@ -48,11 +50,14 @@ const ModalComponent = ({
             </option>
           ))}
         </SelectBoxWrapper>
+
         <FormButton onClick={onAllCheck}>전체 선택</FormButton>
         <FormButton onClick={onAllUnCheck} bgWhite>
           선택 해제
         </FormButton>
+
         <FormSubTitle>{selectCity}</FormSubTitle>
+
         <CheckBoxWrapper ref={checkBoxRef} onChange={onCheckCountry}>
           {selectOptionCountry.map((el, idx) => {
             return (
@@ -68,6 +73,7 @@ const ModalComponent = ({
             );
           })}
         </CheckBoxWrapper>
+
         {selectRegions.length ? (
           <>
             <FormSubTitle>선택 도시</FormSubTitle>
@@ -86,6 +92,7 @@ const ModalComponent = ({
         ) : (
           <></>
         )}
+
         <FormButton onClick={() => setModal(false)} bgWhite>
           취소
         </FormButton>
